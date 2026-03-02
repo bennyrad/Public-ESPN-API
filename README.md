@@ -22,18 +22,30 @@ Every contribution helps keep this project updated as ESPN changes their API.
 
 These apps are live examples of what you can build using this documentation and the included Django service:
 
-### [Sportly: Basketball Live](https://play.google.com/store/apps/details?id=com.sportly.basketball)
+### 🏀 [Sportly: Basketball Live](https://play.google.com/store/apps/details?id=com.sportly.basketball)
 > Real-time NBA, college basketball, and international leagues — scores, standings, player stats, and live game tracking.
 
 [![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Basketball-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.basketball)
 
-### [Sportly: Soccer Live](https://play.google.com/store/apps/details?id=com.sportly.soccer)
+### ⚽ [Sportly: Soccer Live](https://play.google.com/store/apps/details?id=com.sportly.soccer)
 > Premier League, La Liga, Bundesliga, Serie A, MLS, and more — live scores, tables, fixtures, and news.
 
 [![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Soccer-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.soccer)
 
-> Want to feature your app here? Open a PR or issue!
+### 🏒 Sportly: NHL & Hockey *(coming soon)*
+> Live NHL scores, standings, game stats, and hockey data across leagues.
 
+`com.sportly.hockey` — Currently in internal testing
+
+### 🏈 Sportly: American Football *(coming soon)*
+> NFL scores, standings, play-by-play, and college football coverage.
+
+`com.sportly.football` — Currently in internal testing
+
+### ⚾ Sportly: Baseball *(coming soon)*
+> MLB scores, box scores, standings, and baseball stats.
+
+`com.sportly.baseball` — Currently in internal testing
 
 
 ## Table of Contents

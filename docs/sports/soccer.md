@@ -1,71 +1,293 @@
-# ⚽ Soccer
+﻿#  Soccer
 
-> Association football — Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, UCL, and international tournaments.
+> Association football  Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, UCL, and international tournaments.
 
-**Sport slug:** `soccer`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/soccer/`  
+**Sport slug:** `soccer`
+**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/soccer/`
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/soccer/`
 
 ---
 
 ## Leagues & Competitions
 
-| Abbreviation | League Name | Slug | Full URL |
-| --- | --- | --- | --- |
-| `FIFA WORLD CUP` | FIFA World Cup | `fifa.world` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.world` |
-| `FIFA WOMEN'S WORLD CUP` | FIFA Women's World Cup | `fifa.wwc` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.wwc` |
-| `UEFA CHAMPIONS LEAGUE` | UEFA Champions League | `uefa.champions` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.champions` |
-| `PREMIER LEAGUE` | English Premier League | `eng.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1` |
-| `ENGLISH FA CUP` | English FA Cup | `eng.fa` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.fa` |
-| `CARABAO CUP` | English Carabao Cup | `eng.league_cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.league_cup` |
-| `LALIGA` | Spanish LALIGA | `esp.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/esp.1` |
-| `SPANISH SUPERCOPA` | Spanish Supercopa | `esp.super_cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/esp.super_cup` |
-| `COPA DEL REY` | Spanish Copa del Rey | `esp.copa_del_rey` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/esp.copa_del_rey` |
-| `BUNDESLIGA` | German Bundesliga | `ger.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/ger.1` |
-| `GERMAN CUP` | German Cup | `ger.dfb_pokal` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/ger.dfb_pokal` |
-| `MLS` | MLS | `usa.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/usa.1` |
-| `LEAGUES CUP` | Leagues Cup | `concacaf.leagues.cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/concacaf.leagues.cup` |
-| `CAMPEONES CUP` | Campeones Cup | `campeones.cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/campeones.cup` |
-| `SHEBELIEVES CUP` | SheBelieves Cup | `fifa.shebelieves` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.shebelieves` |
-| `WOMEN'S CHAMPIONS CUP` | FIFA Women's Champions Cup | `fifa.w.champions_cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.w.champions_cup` |
-| `UEFA WOMEN'S CHAMPIONS LEAGUE` | UEFA Women's Champions League | `uefa.wchampions` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.wchampions` |
-| `NWSL` | NWSL | `usa.nwsl` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/usa.nwsl` |
-| `NWSL CHALLENGE CUP` | NWSL Challenge Cup | `usa.nwsl.cup` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/usa.nwsl.cup` |
-| `UEFA EUROPA LEAGUE` | UEFA Europa League | `uefa.europa` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.europa` |
-| `UEFA CONFERENCE LEAGUE` | UEFA Conference League | `uefa.europa.conf` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.europa.conf` |
-| `LIGA MX` | Mexican Liga BBVA MX | `mex.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/mex.1` |
-| `SERIE A` | Italian Serie A | `ita.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/ita.1` |
-| `COPPA ITALIA` | Coppa Italia | `ita.coppa_italia` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/ita.coppa_italia` |
-| `LIGUE 1` | French Ligue 1 | `fra.1` | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/fra.1` |
+> This expanded list was compiled from the ESPN API and community contributions. See [issue #7](https://github.com/pseudo-r/Public-ESPN-API/issues/7).
+
+###  International / FIFA
+
+| Slug | Description |
+| --- | --- |
+| `fifa.world` | FIFA World Cup |
+| `fifa.wwc` | FIFA Women's World Cup |
+| `fifa.world.u20` | FIFA Under-20 World Cup |
+| `fifa.world.u17` | FIFA Under-17 World Cup |
+| `fifa.wworld.u17` | FIFA Under-17 Women's World Cup |
+| `fifa.cwc` | FIFA Club World Cup |
+| `fifa.friendly` | International Friendly |
+| `fifa.friendly.w` | Women's International Friendly |
+| `fifa.friendly_u21` | Under-21 International Friendly |
+| `fifa.u20.friendly` | International U20 Friendly |
+| `fifa.shebelieves` | SheBelieves Cup |
+| `fifa.w.champions_cup` | FIFA Women's Champions Cup |
+| `fifa.intercontinental_cup` | FIFA Intercontinental Cup |
+| `fifa.olympics` | Men's Olympic Soccer Tournament |
+| `fifa.w.olympics` | Women's Olympic Soccer Tournament |
+| `fifa.worldq` | World Cup Qualifying |
+| `fifa.worldq.uefa` | FIFA World Cup Qualifying - UEFA |
+| `fifa.worldq.caf` | FIFA World Cup Qualifying - CAF |
+| `fifa.worldq.afc` | FIFA World Cup Qualifying - AFC |
+| `fifa.worldq.concacaf` | FIFA World Cup Qualifying - Concacaf |
+| `fifa.worldq.conmebol` | FIFA World Cup Qualifying - CONMEBOL |
+| `fifa.worldq.ofc` | FIFA World Cup Qualifying - OFC |
+| `fifa.wwcq.ply` | FIFA Women's World Cup Qualifying - Playoff |
+| `fifa.wworldq.uefa` | FIFA Women's World Cup Qualifying - UEFA |
+
+###  UEFA
+
+| Slug | Description |
+| --- | --- |
+| `uefa.champions` | UEFA Champions League |
+| `uefa.champions_qual` | UEFA Champions League Qualifying |
+| `uefa.europa` | UEFA Europa League |
+| `uefa.europa_qual` | UEFA Europa League Qualifying |
+| `uefa.europa.conf` | UEFA Conference League |
+| `uefa.europa.conf_qual` | UEFA Conference League Qualifying |
+| `uefa.super_cup` | UEFA Super Cup |
+| `uefa.wchampions` | UEFA Women's Champions League |
+| `uefa.euro` | UEFA European Championship |
+| `uefa.euroq` | UEFA European Championship Qualifying |
+| `uefa.weuro` | UEFA Women's European Championship |
+| `uefa.euro_u21` | UEFA European Under-21 Championship |
+| `uefa.euro_u21_qual` | UEFA European Under-21 Championship Qualifying |
+| `uefa.euro.u19` | UEFA European Under-19 Championship |
+| `uefa.nations` | UEFA Nations League |
+| `uefa.w.nations` | UEFA Women's Nations League |
+
+###  England
+
+| Slug | Description |
+| --- | --- |
+| `eng.1` | English Premier League |
+| `eng.2` | English Championship |
+| `eng.3` | English League One |
+| `eng.4` | English League Two |
+| `eng.5` | English National League |
+| `eng.fa` | English FA Cup |
+| `eng.league_cup` | English Carabao Cup |
+| `eng.trophy` | English EFL Trophy |
+| `eng.charity` | English FA Community Shield |
+| `eng.asia_trophy` | Premier League Asia Trophy |
+| `eng.w.1` | English Women's Super League |
+| `eng.w.fa` | English Women's FA Cup |
+| `eng.w.charity` | English Women's FA Community Shield |
+
+###  Spain
+
+| Slug | Description |
+| --- | --- |
+| `esp.1` | Spanish LALIGA |
+| `esp.2` | Spanish LALIGA 2 |
+| `esp.copa_del_rey` | Spanish Copa del Rey |
+| `esp.super_cup` | Spanish Supercopa |
+| `esp.joan_gamper` | Trofeo Joan Gamper |
+| `esp.w.1` | Spanish Liga F |
+| `esp.copa_de_la_reina` | Spanish Copa de la Reina |
+
+###  Germany
+
+| Slug | Description |
+| --- | --- |
+| `ger.1` | German Bundesliga |
+| `ger.2` | German 2. Bundesliga |
+| `ger.dfb_pokal` | German Cup |
+| `ger.super_cup` | German Supercup |
+| `ger.playoff.relegation` | German Bundesliga Promotion/Relegation Playoff |
+| `ger.2.promotion.relegation` | German Bundesliga 2 Promotion/Relegation Playoffs |
+
+###  Italy
+
+| Slug | Description |
+| --- | --- |
+| `ita.1` | Italian Serie A |
+| `ita.2` | Italian Serie B |
+| `ita.coppa_italia` | Coppa Italia |
+| `ita.super_cup` | Italian Supercoppa |
+
+###  France
+
+| Slug | Description |
+| --- | --- |
+| `fra.1` | French Ligue 1 |
+| `fra.2` | French Ligue 2 |
+| `fra.coupe_de_france` | Coupe de France |
+| `fra.super_cup` | French Trophee des Champions |
+| `fra.w.1` | French Premiere Ligue |
+
+###  Netherlands
+
+| Slug | Description |
+| --- | --- |
+| `ned.1` | Dutch Eredivisie |
+| `ned.2` | Dutch Keuken Kampioen Divisie |
+| `ned.3` | Dutch Tweede Divisie |
+| `ned.cup` | Dutch KNVB Beker |
+| `ned.supercup` | Dutch Johan Cruyff Shield |
+| `ned.w.1` | Dutch Vrouwen Eredivisie |
+| `ned.w.knvb_cup` | Dutch KNVB Beker Vrouwen |
+
+###  Scotland
+
+| Slug | Description |
+| --- | --- |
+| `sco.1` | Scottish Premiership |
+| `sco.2` | Scottish Championship |
+| `sco.3` | Scottish League One |
+| `sco.4` | Scottish League Two |
+| `sco.tennents` | Scottish Cup |
+| `sco.cis` | Scottish League Cup |
+| `sco.challenge` | Scottish League Challenge Cup |
+
+###  Portugal /  Belgium /  Austria / Other Europe
+
+| Slug | Description |
+| --- | --- |
+| `por.1` | Portuguese Primeira Liga |
+| `por.taca.portugal` | Taca de Portugal |
+| `bel.1` | Belgian Pro League |
+| `aut.1` | Austrian Bundesliga |
+| `gre.1` | Greek Super League |
+| `tur.1` | Turkish Super Lig |
+| `den.1` | Danish Superliga |
+| `nor.1` | Norwegian Eliteserien |
+| `swe.1` | Swedish Allsvenskan |
+| `cyp.1` | Cypriot First Division |
+| `irl.1` | Irish Premier Division |
+| `rus.1` | Russian Premier League |
+
+###  USA / CONCACAF
+
+| Slug | Description |
+| --- | --- |
+| `usa.1` | MLS |
+| `usa.open` | U.S. Open Cup |
+| `usa.nwsl` | NWSL |
+| `usa.nwsl.cup` | NWSL Challenge Cup |
+| `usa.nwsl.summer.cup` | NWSL X Liga MX Femenil Summer Cup |
+| `usa.usl.1` | USL Championship |
+| `usa.usl.l1` | USL League One |
+| `usa.w.usl.1` | USL Super League |
+| `usa.ncaa.m.1` | NCAA Men's Soccer |
+| `usa.ncaa.w.1` | NCAA Women's Soccer |
+| `concacaf.champions` | Concacaf Champions Cup |
+| `concacaf.leagues.cup` | Leagues Cup |
+| `concacaf.gold` | Concacaf Gold Cup |
+| `concacaf.nations.league` | Concacaf Nations League |
+| `concacaf.w.gold` | Concacaf W Gold Cup |
+| `concacaf.w.champions_cup` | Concacaf W Champions Cup |
+| `campeones.cup` | Campeones Cup |
+| `can.w.nsl` | Northern Super League (Canada) |
+
+###  Mexico
+
+| Slug | Description |
+| --- | --- |
+| `mex.1` | Mexican Liga BBVA MX |
+| `mex.2` | Mexican Liga de Expansion MX |
+| `mex.campeon` | Mexican Campeon de Campeones |
+| `mex.supercopa` | Mexican Supercopa MX |
+
+###  South America / CONMEBOL
+
+| Slug | Description |
+| --- | --- |
+| `conmebol.libertadores` | CONMEBOL Libertadores |
+| `conmebol.sudamericana` | CONMEBOL Sudamericana |
+| `conmebol.recopa` | CONMEBOL Recopa |
+| `conmebol.america` | Copa America |
+| `conmebol.america_qual` | Copa America Qualifying |
+| `conmebol.america.femenina` | Copa America Femenina |
+| `global.finalissima` | CONMEBOL-UEFA Cup of Champions |
+| `arg.1` | Argentine Liga Profesional de Futbol |
+| `arg.copa` | Copa Argentina |
+| `bra.1` | Brazilian Serie A |
+| `bra.2` | Brazilian Serie B |
+| `bra.copa_do_brazil` | Copa do Brasil |
+| `chi.1` | Chilean Primera Division |
+| `col.1` | Colombian Primera A |
+| `par.1` | Paraguayan Primera Division |
+| `per.1` | Peruvian Liga 1 |
+| `uru.1` | Liga AUF Uruguaya |
+| `bol.1` | Bolivian Liga Profesional |
+| `ecu.1` | LigaPro Ecuador |
+| `ven.1` | Venezuelan Primera Division |
+
+###  Africa / CAF
+
+| Slug | Description |
+| --- | --- |
+| `caf.nations` | Africa Cup of Nations |
+| `caf.nations_qual` | Africa Cup of Nations Qualifying |
+| `caf.champions` | CAF Champions League |
+| `caf.confed` | CAF Confederation Cup |
+| `rsa.1` | South African Premiership |
+| `nga.1` | Nigerian Professional League |
+| `gha.1` | Ghanaian Premier League |
+
+###  Asia / Middle East / Oceania
+
+| Slug | Description |
+| --- | --- |
+| `afc.champions` | AFC Champions League Elite |
+| `afc.cup` | AFC Champions League Two |
+| `afc.asian.cup` | AFC Asian Cup |
+| `ksa.1` | Saudi Pro League |
+| `ksa.kings.cup` | Saudi King's Cup |
+| `jpn.1` | Japanese J.League |
+| `chn.1` | Chinese Super League |
+| `ind.1` | Indian Super League |
+| `tha.1` | Thai League 1 |
+| `mys.1` | Malaysian Super League |
+| `idn.1` | Indonesian Super League |
+| `sgp.1` | Singaporean Premier League |
+| `aus.1` | Australian A-League Men |
+| `aus.w.1` | Australian A-League Women |
+
+###  Club Friendlies & Misc
+
+| Slug | Description |
+| --- | --- |
+| `club.friendly` | Club Friendly |
+| `nonfifa` | Non-FIFA Friendly |
+| `friendly.emirates_cup` | Emirates Cup |
+| `global.champs_cup` | International Champions Cup |
+| `generic.ussf` | Misc. U.S. Soccer Games |
 
 ---
 
 ## API Endpoints
 
-> All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}<sub-path>`  
-> Replace `{league}` with a league slug from the table above.
+> All endpoints follow the pattern:
+> `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}<sub-path>`
+> Replace `{league}` with a slug from the tables above.
 
 ### Common Query Parameters
 
-Most list endpoints support: `page` (int), `limit` (int). Additional filters are documented per endpoint.
+Most list endpoints support: `page` (int), `limit` (int).
 
 ### Seasons & Calendar
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `groups`, `profile`, `types`, `season`, `weeks`, `tournamentId` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `statuses`, `position` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `active`, `national`, `group`, `dates`, `types` |
 
 ### Athletes / Players
 
@@ -78,12 +300,19 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `types`, `period`, `sort`, `source`, `showsubplays` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+
+### Standings / Rankings / Venues
+
+| Endpoint | Method ID | Query Params |
+| --- | --- | --- |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/standings` | `getStandings` | `page`, `limit` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### News & Media
 
@@ -91,29 +320,13 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 | --- | --- | --- |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
-### Rankings & Awards
-
-| Endpoint | Method ID | Query Params |
-| --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
-
-### Venues
-
-| Endpoint | Method ID | Query Params |
-| --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
-
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
 | `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
@@ -121,29 +334,32 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ## V3 Endpoints
 
-| Endpoint | Method ID | Query Params |
-| --- | --- | --- |
-| `https://sports.core.api.espn.com/v3/sports/{sport}/athletes` | `getAthletes` | `page`, `limit`, `_hoist`, `_help`, `_trace`, `_nocache`, `enable`, `disable`, `pq`, `q`, `page`, `limit`, `lang`, `region`, `utcOffset`, `dates`, `weeks`, `advance`, `event.recurring`, `ids`, `type`, `types`, `seasontypes`, `calendar.type`, `calendar.groups`, `status`, `statuses`, `groups`, `provider`, `provider.priority`, `site`, `league.type`, `split`, `splits`, `record.splits`, `record.seasontype`, `statistic.splits`, `statistic.seasontype`, `statistic.qualified`, `statistic.context`, `sort`, `roster.positions`, `roster.athletes`, `team.athletes`, `powerindex.rundatetimekey`, `eventsback`, `eventsforward`, `eventsrange`, `eventstates`, `eventresults`, `seek`, `tournaments`, `competitions`, `competition.types`, `teams`, `situation.play`, `oldteams`, `newteams`, `played`, `period`, `position`, `filter`, `available`, `active`, `ids.sportware`, `profile`, `opponent`, `eventId`, `homeAway`, `season`, `athlete.position`, `postalCode`, `award.type`, `notes.type`, `tidbit.type`, `networks`, `bets.promotion`, `guids`, `competitors`, `source` |
-| `https://sports.core.api.espn.com/v3/sports/{sport}/{league}` | `getLeague` | `page`, `limit`, `_hoist`, `_help`, `_trace`, `_nocache`, `enable`, `disable`, `pq`, `q`, `page`, `limit`, `lang`, `region`, `utcOffset`, `dates`, `weeks`, `advance`, `event.recurring`, `ids`, `type`, `types`, `seasontypes`, `calendar.type`, `calendar.groups`, `status`, `statuses`, `groups`, `provider`, `provider.priority`, `site`, `league.type`, `split`, `splits`, `record.splits`, `record.seasontype`, `statistic.splits`, `statistic.seasontype`, `statistic.qualified`, `statistic.context`, `sort`, `roster.positions`, `roster.athletes`, `team.athletes`, `powerindex.rundatetimekey`, `eventsback`, `eventsforward`, `eventsrange`, `eventstates`, `eventresults`, `seek`, `tournaments`, `competitions`, `competition.types`, `teams`, `situation.play`, `oldteams`, `newteams`, `played`, `period`, `position`, `filter`, `available`, `active`, `ids.sportware`, `profile`, `opponent`, `eventId`, `homeAway`, `season`, `athlete.position`, `postalCode`, `award.type`, `notes.type`, `tidbit.type`, `networks`, `bets.promotion`, `guids`, `competitors`, `source` |
-| `https://sports.core.api.espn.com/v3/sports/{sport}/{league}/seasons/{season}` | `getSeason` | `page`, `limit`, `_hoist`, `_help`, `_trace`, `_nocache`, `enable`, `disable`, `pq`, `q`, `page`, `limit`, `lang`, `region`, `utcOffset`, `dates`, `weeks`, `advance`, `event.recurring`, `ids`, `type`, `types`, `seasontypes`, `calendar.type`, `calendar.groups`, `status`, `statuses`, `groups`, `provider`, `provider.priority`, `site`, `league.type`, `split`, `splits`, `record.splits`, `record.seasontype`, `statistic.splits`, `statistic.seasontype`, `statistic.qualified`, `statistic.context`, `sort`, `roster.positions`, `roster.athletes`, `team.athletes`, `powerindex.rundatetimekey`, `eventsback`, `eventsforward`, `eventsrange`, `eventstates`, `eventresults`, `seek`, `tournaments`, `competitions`, `competition.types`, `teams`, `situation.play`, `oldteams`, `newteams`, `played`, `period`, `position`, `filter`, `available`, `active`, `ids.sportware`, `profile`, `opponent`, `eventId`, `homeAway`, `season`, `athlete.position`, `postalCode`, `award.type`, `notes.type`, `tidbit.type`, `networks`, `bets.promotion`, `guids`, `competitors`, `source` |
+| Endpoint | Method ID |
+| --- | --- |
+| `https://sports.core.api.espn.com/v3/sports/soccer/{league}` | `getLeague` |
+| `https://sports.core.api.espn.com/v3/sports/soccer/{league}/athletes` | `getAthletes` |
+| `https://sports.core.api.espn.com/v3/sports/soccer/{league}/seasons/{season}` | `getSeason` |
 
 ---
 
 ## Example API Calls
 
 ```bash
-# List leagues for Soccer
+# List all soccer leagues
 curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues"
 
-# Get FIFA World Cup teams
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.world/teams"
+# Premier League teams
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.world/events"
+# Premier League standings
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/standings"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.world/athletes"
+# Premier League scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
 
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/fifa.world/standings"
+# Champions League events (core API)
+curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.champions/events"
+
+# EPL athletes (v3)
+curl "https://sports.core.api.espn.com/v3/sports/soccer/eng.1/athletes?limit=100&active=true"
 ```
