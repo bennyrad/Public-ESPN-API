@@ -27,25 +27,39 @@ Fix bugs or add features to the Django service. Please include tests for any cod
 
 ## Development Setup
 
+### 🐳 Docker (recommended — one command)
+
 ```bash
-# Clone the repo
 git clone https://github.com/pseudo-r/Public-ESPN-API.git
 cd Public-ESPN-API
 
-# Set up Python environment (espn_service)
+# Copy env file
+cp .env.example espn_service/.env
+
+# Start PostgreSQL, Redis, Django + Celery
+docker compose up
+```
+
+API at **http://localhost:8000** · Swagger UI at **http://localhost:8000/api/schema/swagger-ui/**
+
+---
+
+### 🐍 Local (without Docker)
+
+Prerequisites: Python 3.12+, PostgreSQL 14+, Redis 6+.
+
+```bash
 cd espn_service
 python -m venv venv
 source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -e ".[dev]"
 
-# Copy env file
-cp .env.example .env
+# Copy and edit env
+cp ../.env.example .env
+# Set DATABASE_URL and CELERY_BROKER_URL to your local values
 
-# Run migrations
 python manage.py migrate
-
-# Run tests
-pytest
+python manage.py runserver
 ```
 
 ---
