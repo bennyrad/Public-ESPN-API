@@ -4,17 +4,6 @@
 
 **Disclaimer:** This is documentation for ESPN's undocumented public API. I am not affiliated with ESPN. Use responsibly and follow ESPN's terms of service.
 
-<a href="https://buymeacoffee.com/pseudo_r" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" width="217">
-</a>
-
-
-## GitAds Sponsored
-[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=pseudo-r/public-espn-api@github)](https://gitads.dev/v1/ad-track?source=pseudo-r/public-espn-api@github)
-
-
-
-
 ---
 
 ## ☕ Support This Project
@@ -45,20 +34,21 @@ These apps are live examples of what you can build using this documentation and 
 
 [![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Soccer-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.soccer)
 
-### 🏒 Sportly: NHL & Hockey *(coming soon)*
+### 🏒 [Sportly: NHL & Hockey Live](https://play.google.com/store/apps/details?id=com.sportly.hockey)
 > Live NHL scores, standings, game stats, and hockey data across leagues.
 
-`com.sportly.hockey` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Hockey-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.hockey)
 
-### 🏈 Sportly: American Football *(coming soon)*
+### 🏈 [Sportly: American Football Live](https://play.google.com/store/apps/details?id=com.sportly.football)
 > NFL scores, standings, play-by-play, and college football coverage.
 
-`com.sportly.football` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Football-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.football)
 
-### ⚾ Sportly: Baseball *(coming soon)*
+### ⚾ [Sportly: Baseball Live](https://play.google.com/store/apps/details?id=com.sportly.baseball)
 > MLB scores, box scores, standings, and baseball stats.
 
-`com.sportly.baseball` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Baseball-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.baseball)
+
 
 
 ## Table of Contents
