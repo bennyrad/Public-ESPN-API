@@ -2,6 +2,9 @@
 
 > **Disclaimer:** This is documentation for ESPN's undocumented public API. I am not affiliated with ESPN. Use responsibly and follow ESPN's terms of service.
 
+[![CI](https://github.com/pseudo-r/Public-ESPN-API/actions/workflows/ci.yml/badge.svg?branch=Public-Api)](https://github.com/pseudo-r/Public-ESPN-API/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/pseudo-r/Public-ESPN-API/branch/Public-Api/graph/badge.svg)](https://codecov.io/gh/pseudo-r/Public-ESPN-API)
+
 ---
 
 ## ☕ Support This Project
