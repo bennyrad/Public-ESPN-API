@@ -44,6 +44,9 @@ class IngestionResult:
 def get_or_create_sport_and_league(sport_slug: str, league_slug: str) -> tuple[Sport, League]:
     """Get or create Sport and League records.
 
+    Uses the comprehensive SPORT_NAMES and LEAGUE_INFO registries that cover
+    all 17 sports and 139 leagues discovered from the ESPN v2/v3 WADL.
+
     Args:
         sport_slug: Sport slug (e.g., "basketball", "football")
         league_slug: League slug (e.g., "nba", "nfl")
@@ -51,40 +54,15 @@ def get_or_create_sport_and_league(sport_slug: str, league_slug: str) -> tuple[S
     Returns:
         Tuple of (Sport, League)
     """
-    # Map sport slugs to display names
-    sport_names = {
-        "basketball": "Basketball",
-        "football": "Football",
-        "baseball": "Baseball",
-        "hockey": "Hockey",
-        "soccer": "Soccer",
-        "mma": "Mixed Martial Arts",
-        "golf": "Golf",
-        "tennis": "Tennis",
-        "racing": "Racing",
-    }
-
-    # Map league slugs to display names and abbreviations
-    league_info = {
-        "nba": ("NBA", "NBA"),
-        "nfl": ("NFL", "NFL"),
-        "mlb": ("MLB", "MLB"),
-        "nhl": ("NHL", "NHL"),
-        "wnba": ("WNBA", "WNBA"),
-        "college-football": ("College Football", "NCAAF"),
-        "mens-college-basketball": ("Men's College Basketball", "NCAAM"),
-        "womens-college-basketball": ("Women's College Basketball", "NCAAW"),
-        "mls": ("MLS", "MLS"),
-        "eng.1": ("English Premier League", "EPL"),
-    }
+    from clients.espn_client import LEAGUE_INFO, SPORT_NAMES
 
     sport, _ = Sport.objects.get_or_create(
         slug=sport_slug,
-        defaults={"name": sport_names.get(sport_slug, sport_slug.title())},
+        defaults={"name": SPORT_NAMES.get(sport_slug, sport_slug.replace("-", " ").title())},
     )
 
-    league_name, league_abbr = league_info.get(
-        league_slug, (league_slug.upper(), league_slug.upper())
+    league_name, league_abbr = LEAGUE_INFO.get(
+        league_slug, (league_slug.replace("-", " ").title(), league_slug.upper()[:10])
     )
     league, _ = League.objects.get_or_create(
         sport=sport,

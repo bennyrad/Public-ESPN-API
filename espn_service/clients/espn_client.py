@@ -37,6 +37,192 @@ class ESPNEndpointDomain(str, Enum):
     CORE = "core"  # sports.core.api.espn.com
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Sports & League Registry
+# All 17 sports and 139 leagues discovered from the ESPN v2/v3 WADL.
+# Format: "sport_slug": "Display Name"
+# ─────────────────────────────────────────────────────────────────────────────
+
+SPORT_NAMES: dict[str, str] = {
+    "australian-football": "Australian Football",
+    "baseball": "Baseball",
+    "basketball": "Basketball",
+    "cricket": "Cricket",
+    "field-hockey": "Field Hockey",
+    "football": "Football",
+    "golf": "Golf",
+    "hockey": "Hockey",
+    "lacrosse": "Lacrosse",
+    "mma": "Mixed Martial Arts",
+    "racing": "Racing",
+    "rugby": "Rugby",
+    "rugby-league": "Rugby League",
+    "soccer": "Soccer",
+    "tennis": "Tennis",
+    "volleyball": "Volleyball",
+    "water-polo": "Water Polo",
+}
+
+# league_slug: (Display Name, Abbreviation)
+LEAGUE_INFO: dict[str, tuple[str, str]] = {
+    # Australian Football
+    "afl": ("AFL", "AFL"),
+    # Baseball
+    "caribbean-series": ("Caribbean Series", "CAR"),
+    "college-baseball": ("NCAA Baseball", "NCAAB"),
+    "college-softball": ("NCAA Softball", "NCAAS"),
+    "dominican-winter-league": ("Dominican Winter League", "DWL"),
+    "llb": ("Little League Baseball", "LLB"),
+    "lls": ("Little League Softball", "LLS"),
+    "mexican-winter-league": ("Mexican League", "MLM"),
+    "mlb": ("Major League Baseball", "MLB"),
+    "olympics-baseball": ("Olympics Men's Baseball", "OLY"),
+    "puerto-rican-winter-league": ("Puerto Rican Winter League", "PRWL"),
+    "venezuelan-winter-league": ("Venezuelan Winter League", "VWL"),
+    "world-baseball-classic": ("World Baseball Classic", "WBC"),
+    # Basketball
+    "fiba": ("FIBA World Cup", "FIBA"),
+    "mens-college-basketball": ("NCAA Men's Basketball", "NCAAM"),
+    "mens-olympics-basketball": ("Olympics Men's Basketball", "OLY"),
+    "nba": ("National Basketball Association", "NBA"),
+    "nba-development": ("NBA G League", "GLEA"),
+    "nba-summer-california": ("NBA California Classic Summer League", "NBASL"),
+    "nba-summer-golden-state": ("Golden State Summer League", "GSSL"),
+    "nba-summer-las-vegas": ("Las Vegas Summer League", "LVSL"),
+    "nba-summer-orlando": ("Orlando Summer League", "OSL"),
+    "nba-summer-sacramento": ("Sacramento Summer League", "SASL"),
+    "nba-summer-utah": ("Salt Lake City Summer League", "SLSL"),
+    "nbl": ("National Basketball League", "NBL"),
+    "wnba": ("Women's National Basketball Association", "WNBA"),
+    "womens-college-basketball": ("NCAA Women's Basketball", "NCAAW"),
+    "womens-olympics-basketball": ("Olympics Women's Basketball", "OLY"),
+    # Field Hockey
+    "womens-college-field-hockey": ("NCAA Women's Field Hockey", "NCAAFH"),
+    # Football
+    "cfl": ("Canadian Football League", "CFL"),
+    "college-football": ("NCAA Football", "NCAAF"),
+    "nfl": ("National Football League", "NFL"),
+    "ufl": ("United Football League", "UFL"),
+    "xfl": ("XFL", "XFL"),
+    # Golf
+    "champions-tour": ("PGA TOUR Champions", "CHAMP"),
+    "eur": ("DP World Tour", "DP"),
+    "liv": ("LIV Golf Invitational Series", "LIV"),
+    "lpga": ("Ladies Pro Golf Association", "LPGA"),
+    "mens-olympics-golf": ("Olympic Golf - Men", "OLY"),
+    "ntw": ("Korn Ferry Tour", "KFT"),
+    "pga": ("PGA TOUR", "PGA"),
+    "tgl": ("TGL", "TGL"),
+    "womens-olympics-golf": ("Olympic Golf - Women", "OLY"),
+    # Hockey
+    "hockey-world-cup": ("World Cup of Hockey", "WCOH"),
+    "mens-college-hockey": ("NCAA Men's Ice Hockey", "NCAAH"),
+    "nhl": ("National Hockey League", "NHL"),
+    "olympics-mens-ice-hockey": ("Men's Ice Hockey Olympics", "OLY"),
+    "olympics-womens-ice-hockey": ("Women's Ice Hockey Olympics", "OLY"),
+    "womens-college-hockey": ("NCAA Women's Hockey", "NCAAWH"),
+    # Lacrosse
+    "mens-college-lacrosse": ("NCAA Men's Lacrosse", "NCAML"),
+    "nll": ("National Lacrosse League", "NLL"),
+    "pll": ("Premier Lacrosse League", "PLL"),
+    "womens-college-lacrosse": ("NCAA Women's Lacrosse", "NCAWL"),
+    # MMA
+    "absolute": ("Absolute Championship Berkut", "ACB"),
+    "affliction": ("Affliction", "AFF"),
+    "bang-fighting": ("Bang Fighting Championships", "BFC"),
+    "banni-fight": ("Banni Fight Combat", "BFC"),
+    "banzay": ("Banzay Fight Championship", "BZY"),
+    "barracao": ("Barracao Fight Championship", "BFC"),
+    "battlezone": ("Battlezone Fighting Championships", "BZN"),
+    "bellator": ("Bellator Fighting Championship", "BEL"),
+    "benevides": ("Benevides Fight Championship", "BFG"),
+    "big-fight": ("Big Fight Champions", "BFC"),
+    "blackout": ("Blackout Fighting Championship", "BOF"),
+    "bosnia": ("Bosnia Fight Championship", "BFC"),
+    "boxe": ("Boxe Fight Combat", "BXE"),
+    "brazilian-freestyle": ("Brazilian Freestyle Circuit", "BRC"),
+    "budo": ("Budo Fighting Championships", "BDO"),
+    "cage-warriors": ("Cage Warriors Fighting Championship", "CW"),
+    "dream": ("Dream", "DRM"),
+    "fng": ("Fight Nights Global", "FNG"),
+    "ifc": ("Invicta FC", "IFC"),
+    "ifl": ("International Fight League", "IFL"),
+    "k1": ("K-1", "K1"),
+    "ksw": ("Konfrontacja Sztuk Walki", "KSW"),
+    "lfa": ("Legacy Fighting Alliance", "LFA"),
+    "lfc": ("Legacy Fighting Championship", "LFC"),
+    "m1": ("M-1 Mix-Fight Championship", "M1"),
+    # Racing
+    "f1": ("Formula 1", "F1"),
+    "irl": ("IndyCar Series", "INDY"),
+    "nascar-premier": ("NASCAR Cup Series", "CUP"),
+    "nascar-secondary": ("NASCAR O'Reilly Auto Parts Series", "XFN"),
+    "nascar-truck": ("NASCAR Truck Series", "TRUCK"),
+    # Rugby (numeric IDs)
+    "268565": ("British and Irish Lions Tour", "BILT"),
+    "164205": ("Rugby World Cup", "RWC"),
+    "180659": ("Six Nations", "6N"),
+    "244293": ("The Rugby Championship", "TRC"),
+    "271937": ("European Rugby Champions Cup", "EPCR"),
+    "272073": ("European Rugby Challenge Cup", "ERCC"),
+    "267979": ("Gallagher Premiership", "PREM"),
+    "270557": ("United Rugby Championship", "URC"),
+    "270559": ("French Top 14", "TOP14"),
+    "2009": ("URBA Primera A", "URBA"),
+    "242041": ("Super Rugby Pacific", "SRP"),
+    "289271": ("Super Rugby Aotearoa", "SRA"),
+    "289272": ("Super Rugby AU", "SRAU"),
+    "289277": ("Super Rugby Trans-Tasman", "SRTT"),
+    "289279": ("URBA Top 12", "T12"),
+    "270555": ("Currie Cup", "CC"),
+    "270563": ("Mitre 10 Cup", "M10"),
+    "236461": ("Anglo-Welsh Cup", "AWC"),
+    "289274": ("2020 Tri Nations", "TN"),
+    "282": ("Olympic Men's 7s", "OLY"),
+    "283": ("Olympic Women's Rugby Sevens", "OLY"),
+    "289237": ("Women's Rugby World Cup", "WRWC"),
+    "289262": ("Major League Rugby", "MLR"),
+    "289234": ("International Test Match", "INT"),
+    # Rugby League
+    "3": ("Rugby League", "RL"),
+    # Soccer
+    "fifa.world": ("FIFA World Cup", "WC"),
+    "fifa.wwc": ("FIFA Women's World Cup", "WWC"),
+    "uefa.champions": ("UEFA Champions League", "UCL"),
+    "eng.1": ("English Premier League", "EPL"),
+    "eng.fa": ("English FA Cup", "FAC"),
+    "eng.league_cup": ("English Carabao Cup", "ELC"),
+    "esp.1": ("Spanish LALIGA", "LIGA"),
+    "esp.super_cup": ("Spanish Supercopa", "SC"),
+    "esp.copa_del_rey": ("Spanish Copa del Rey", "CDR"),
+    "ger.1": ("German Bundesliga", "BUN"),
+    "ger.dfb_pokal": ("German Cup", "DFB"),
+    "usa.1": ("MLS", "MLS"),
+    "concacaf.leagues.cup": ("Leagues Cup", "LC"),
+    "campeones.cup": ("Campeones Cup", "CC"),
+    "fifa.shebelieves": ("SheBelieves Cup", "SBC"),
+    "fifa.w.champions_cup": ("FIFA Women's Champions Cup", "WCC"),
+    "uefa.wchampions": ("UEFA Women's Champions League", "UWCL"),
+    "usa.nwsl": ("NWSL", "NWSL"),
+    "usa.nwsl.cup": ("NWSL Challenge Cup", "NWSLCC"),
+    "uefa.europa": ("UEFA Europa League", "UEL"),
+    "uefa.europa.conf": ("UEFA Conference League", "UECL"),
+    "mex.1": ("Mexican Liga BBVA MX", "LIGAMX"),
+    "ita.1": ("Italian Serie A", "SA"),
+    "ita.coppa_italia": ("Coppa Italia", "CI"),
+    "fra.1": ("French Ligue 1", "L1"),
+    # Tennis
+    "atp": ("ATP", "ATP"),
+    "wta": ("WTA", "WTA"),
+    # Volleyball
+    "mens-college-volleyball": ("NCAA Men's Volleyball", "NCAMV"),
+    "womens-college-volleyball": ("NCAA Women's Volleyball", "NCAWV"),
+    # Water Polo
+    "mens-college-water-polo": ("NCAA Men's Water Polo", "NCAMWP"),
+    "womens-college-water-polo": ("NCAA Women's Water Polo", "NCAWWP"),
+}
+
+
 @dataclass
 class ESPNResponse:
     """Wrapper for ESPN API responses."""
@@ -54,7 +240,7 @@ class ESPNClient:
     """Client for ESPN API interactions.
 
     This client handles:
-    - Multiple ESPN API domains (site, core)
+    - Multiple ESPN API domains (site, core v2, core v3)
     - Automatic retries with exponential backoff
     - Request timeouts
     - Rate limiting guidance
@@ -336,6 +522,26 @@ class ESPNClient:
         )
         return self.get(path, domain=ESPNEndpointDomain.SITE)
 
+    def get_team_roster(
+        self,
+        sport: str,
+        league: str,
+        team_id: str,
+    ) -> ESPNResponse:
+        """Get roster for a specific team.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            team_id: ESPN team ID
+
+        Returns:
+            ESPNResponse with roster data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/teams/{team_id}/roster"
+        logger.info("fetching_team_roster", sport=sport, league=league, team_id=team_id)
+        return self.get(path, domain=ESPNEndpointDomain.SITE)
+
     # --------------------- Event/Game Endpoints ---------------------
 
     def get_event(
@@ -365,7 +571,69 @@ class ESPNClient:
         )
         return self.get(path, domain=ESPNEndpointDomain.SITE, params=params)
 
-    # --------------------- Core API Endpoints ---------------------
+    def get_news(
+        self,
+        sport: str,
+        league: str,
+        limit: int = 25,
+    ) -> ESPNResponse:
+        """Get news for a sport and league.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            limit: Number of articles to return
+
+        Returns:
+            ESPNResponse with news data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/news"
+        params: dict[str, Any] = {"limit": limit}
+        logger.info("fetching_news", sport=sport, league=league)
+        return self.get(path, domain=ESPNEndpointDomain.SITE, params=params)
+
+    def get_standings(
+        self,
+        sport: str,
+        league: str,
+        season: int | None = None,
+    ) -> ESPNResponse:
+        """Get league standings.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            season: Season year (optional)
+
+        Returns:
+            ESPNResponse with standings data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/standings"
+        params: dict[str, Any] = {}
+        if season:
+            params["season"] = season
+        logger.info("fetching_standings", sport=sport, league=league)
+        return self.get(path, domain=ESPNEndpointDomain.SITE, params=params)
+
+    def get_rankings(
+        self,
+        sport: str,
+        league: str,
+    ) -> ESPNResponse:
+        """Get league rankings (college sports).
+
+        Args:
+            sport: Sport slug
+            league: League slug
+
+        Returns:
+            ESPNResponse with rankings data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/rankings"
+        logger.info("fetching_rankings", sport=sport, league=league)
+        return self.get(path, domain=ESPNEndpointDomain.SITE)
+
+    # --------------------- Core API v2 Endpoints ---------------------
 
     def get_league_info(
         self,
@@ -393,6 +661,7 @@ class ESPNClient:
         team_id: str | None = None,
         limit: int = 100,
         page: int = 1,
+        active: bool | None = None,
     ) -> ESPNResponse:
         """Get athletes from core API.
 
@@ -402,6 +671,7 @@ class ESPNClient:
             team_id: Optional team ID to filter by
             limit: Maximum number of athletes
             page: Page number for pagination
+            active: Filter by active status
 
         Returns:
             ESPNResponse with athletes data
@@ -411,6 +681,8 @@ class ESPNClient:
 
         if team_id:
             params["teams"] = team_id
+        if active is not None:
+            params["active"] = "true" if active else "false"
 
         logger.info(
             "fetching_athletes",
@@ -419,6 +691,321 @@ class ESPNClient:
             team_id=team_id,
         )
         return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_athlete(
+        self,
+        sport: str,
+        league: str,
+        athlete_id: str | int,
+    ) -> ESPNResponse:
+        """Get a single athlete from the core API.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            athlete_id: ESPN athlete ID
+
+        Returns:
+            ESPNResponse with athlete data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/athletes/{athlete_id}"
+        logger.info("fetching_athlete", sport=sport, league=league, athlete_id=athlete_id)
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    def get_athlete_statistics(
+        self,
+        sport: str,
+        league: str,
+        athlete_id: str | int,
+        season_type: str | None = None,
+    ) -> ESPNResponse:
+        """Get career statistics for an athlete.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            athlete_id: ESPN athlete ID
+            season_type: Season type (e.g., "2" for regular season)
+
+        Returns:
+            ESPNResponse with statistics data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/athletes/{athlete_id}/statistics"
+        params: dict[str, Any] = {}
+        if season_type:
+            params["seasonType"] = season_type
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_core_events(
+        self,
+        sport: str,
+        league: str,
+        dates: str | None = None,
+        limit: int = 100,
+        page: int = 1,
+    ) -> ESPNResponse:
+        """Get events from the core API (more detailed than site API).
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            dates: Date or range filter (e.g., "2024" or "20241215")
+            limit: Maximum results per page
+            page: Page number
+
+        Returns:
+            ESPNResponse with events data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/events"
+        params: dict[str, Any] = {"limit": limit, "page": page}
+        if dates:
+            params["dates"] = dates
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_seasons(
+        self,
+        sport: str,
+        league: str,
+        limit: int = 20,
+    ) -> ESPNResponse:
+        """Get seasons list for a league.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            limit: Maximum number of seasons
+
+        Returns:
+            ESPNResponse with seasons data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/seasons"
+        params: dict[str, Any] = {"limit": limit}
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_core_teams(
+        self,
+        sport: str,
+        league: str,
+        limit: int = 100,
+        page: int = 1,
+    ) -> ESPNResponse:
+        """Get teams from the core API.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            limit: Results per page
+            page: Page number
+
+        Returns:
+            ESPNResponse with teams data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/teams"
+        params: dict[str, Any] = {"limit": limit, "page": page}
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_core_standings(
+        self,
+        sport: str,
+        league: str,
+        season: int | None = None,
+        season_type: int | None = None,
+    ) -> ESPNResponse:
+        """Get standings from the core API.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            season: Season year
+            season_type: 1=pre, 2=regular, 3=post
+
+        Returns:
+            ESPNResponse with standings data
+        """
+        params: dict[str, Any] = {}
+        if season and season_type:
+            path = (
+                f"/v2/sports/{sport}/leagues/{league}"
+                f"/seasons/{season}/types/{season_type}/groups/standings"
+            )
+        elif season:
+            path = f"/v2/sports/{sport}/leagues/{league}/seasons/{season}/standings"
+        else:
+            path = f"/v2/sports/{sport}/leagues/{league}/standings"
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_odds(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get betting odds for a game.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (usually same as event_id)
+
+        Returns:
+            ESPNResponse with odds data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/odds"
+        )
+        logger.info("fetching_odds", sport=sport, league=league, event_id=event_id)
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    def get_win_probabilities(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get win probabilities for a game.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (usually same as event_id)
+
+        Returns:
+            ESPNResponse with probability data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/probabilities"
+        )
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    def get_plays(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+        limit: int = 400,
+    ) -> ESPNResponse:
+        """Get play-by-play data for a game.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (usually same as event_id)
+            limit: Max plays to return
+
+        Returns:
+            ESPNResponse with play data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/plays"
+        )
+        params: dict[str, Any] = {"limit": limit}
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_venues(
+        self,
+        sport: str,
+        league: str,
+        limit: int = 500,
+    ) -> ESPNResponse:
+        """Get venues for a league.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            limit: Maximum venues to return
+
+        Returns:
+            ESPNResponse with venue data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/venues"
+        params: dict[str, Any] = {"limit": limit}
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_leaders(
+        self,
+        sport: str,
+        league: str,
+        season: int | None = None,
+        season_type: int | None = None,
+    ) -> ESPNResponse:
+        """Get statistical leaders for a league.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            season: Season year
+            season_type: 1=pre, 2=regular, 3=post
+
+        Returns:
+            ESPNResponse with leaders data
+        """
+        params: dict[str, Any] = {}
+        if season and season_type:
+            path = (
+                f"/v2/sports/{sport}/leagues/{league}"
+                f"/seasons/{season}/types/{season_type}/leaders"
+            )
+        else:
+            path = f"/v2/sports/{sport}/leagues/{league}/leaders"
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    # --------------------- Core API v3 Endpoints ---------------------
+
+    def get_athletes_v3(
+        self,
+        sport: str,
+        league: str,
+        limit: int = 1000,
+        active: bool | None = True,
+        page: int = 1,
+    ) -> ESPNResponse:
+        """Get athletes from the v3 core API (richer data).
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            limit: Max athletes
+            active: Filter by active status
+            page: Page number
+
+        Returns:
+            ESPNResponse with athletes data
+        """
+        path = f"/v3/sports/{sport}/{league}/athletes"
+        params: dict[str, Any] = {"limit": limit, "page": page}
+        if active is not None:
+            params["active"] = "true" if active else "false"
+        logger.info("fetching_athletes_v3", sport=sport, league=league)
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_leaders_v3(
+        self,
+        sport: str,
+        league: str,
+    ) -> ESPNResponse:
+        """Get statistical leaders from v3 API.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+
+        Returns:
+            ESPNResponse with leaders data
+        """
+        path = f"/v3/sports/{sport}/{league}/leaders"
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
 
 
 # Default singleton instance
