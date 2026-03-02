@@ -32,20 +32,20 @@ These apps are live examples of what you can build using this documentation and 
 
 [![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Soccer-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.soccer)
 
-### 🏒 Sportly: NHL & Hockey *(coming soon)*
+### 🏒 [Sportly: NHL & Hockey Live](https://play.google.com/store/apps/details?id=com.sportly.hockey)
 > Live NHL scores, standings, game stats, and hockey data across leagues.
 
-`com.sportly.hockey` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Hockey-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.hockey)
 
-### 🏈 Sportly: American Football *(coming soon)*
+### 🏈 [Sportly: American Football Live](https://play.google.com/store/apps/details?id=com.sportly.football)
 > NFL scores, standings, play-by-play, and college football coverage.
 
-`com.sportly.football` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Football-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.football)
 
-### ⚾ Sportly: Baseball *(coming soon)*
+### ⚾ [Sportly: Baseball Live](https://play.google.com/store/apps/details?id=com.sportly.baseball)
 > MLB scores, box scores, standings, and baseball stats.
 
-`com.sportly.baseball` — Currently in internal testing
+[![Get it on Google Play](https://img.shields.io/badge/Google_Play-Sportly_Baseball-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.sportly.baseball)
 
 
 ## Table of Contents
@@ -55,8 +55,16 @@ These apps are live examples of what you can build using this documentation and 
 - [Quick Start](#quick-start)
 - [Sports Coverage](#sports-coverage)
 - [API Endpoint Patterns](#api-endpoint-patterns)
+  - [Site API v2](#site-api-v2-scores-teams-standings)
+  - [Site API v3](#site-api-v3-richer-game-data)
+  - [Core API v2](#core-api-v2-athletes-stats-events-odds)
+  - [Core API v3](#core-api-v3-enriched-schema)
+  - [Search & Web API](#search--web-api)
+  - [CDN API](#cdn-api-real-time-optimized)
+  - [Now API](#now-api-real-time-news)
 - [Fantasy Sports API](#fantasy-sports-api)
 - [Betting & Odds](#betting--odds)
+- [Notable Specialized Endpoints](#notable-specialized-endpoints)
 - [Parameters Reference](#parameters-reference)
 - [ESPN Service (Django Implementation)](#espn-service-django-implementation)
 
@@ -68,6 +76,8 @@ ESPN provides undocumented APIs that power their website and mobile apps. These 
 
 **Coverage:** 17 sports · 139 leagues · 370 v2 endpoints · 79 v3 endpoints  
 *(Mapped from the ESPN WADL at `sports.core.api.espn.com/v2/application.wadl` and `sports.core.api.espn.com/v3/application.wadl`)*
+
+**Additional domains documented:** `site.api.espn.com` (v2 + v3) · `site.web.api.espn.com` · `cdn.espn.com` · `now.core.api.espn.com` · `fantasy.espn.com`
 
 ### Important Notes
 
@@ -140,7 +150,7 @@ Each sport has its own detailed endpoint reference document:
 
 ## API Endpoint Patterns
 
-### Site API (Scores, Teams, Standings)
+### Site API v2 (Scores, Teams, Standings)
 
 ```
 GET https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/{resource}
@@ -153,10 +163,34 @@ GET https://site.api.espn.com/apis/site/v2/sports/{sport}/{league}/{resource}
 | `teams/{id}` | Single team detail |
 | `teams/{id}/roster` | Team roster |
 | `teams/{id}/schedule` | Team schedule |
+| `teams/{id}/depthcharts` | Depth chart by position |
+| `teams/{id}/injuries` | Current injury report |
+| `teams/{id}/transactions` | Recent transactions/moves |
+| `teams/{id}/history` | Franchise historical record |
+| `athletes/{id}` | Individual athlete profile |
+| `athletes/{id}/gamelog` | Game-by-game log |
+| `athletes/{id}/splits` | Statistical splits |
+| `athletes/{id}/news` | Athlete news |
+| `athletes/{id}/bio` | Athlete bio |
 | `standings` | League standings |
 | `news` | Latest news articles |
 | `rankings` | Rankings (college sports) |
+| `calendar` | Season calendar (all weeks/dates) |
+| `calendar/offseason` | Offseason date range |
+| `calendar/regular-season` | Regular season weeks |
+| `calendar/postseason` | Postseason date ranges |
 | `summary?event={id}` | Full game summary |
+
+### Site API v3 (Richer Game Data)
+
+```
+GET https://site.api.espn.com/apis/site/v3/sports/{sport}/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Scoreboard with enriched v3 schema |
+| `summary?event={id}` | Enriched game summary (v3 schema) |
 
 ### Core API v2 (Athletes, Stats, Events, Odds)
 
@@ -176,23 +210,35 @@ GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/{resourc
 | `athletes/{id}/seasons` | Seasons played |
 | `athletes/{id}/records` | Career records |
 | `athletes/{id}/hotzones` | Hot zones (baseball) |
+| `athletes/{id}/injuries` | Athlete injury history |
 | `athletes/{id}/vsathlete/{opponentId}` | Head-to-head stats |
 | `events` | Events with full detail |
 | `events/{id}/competitions/{id}/odds` | Betting odds |
 | `events/{id}/competitions/{id}/probabilities` | Win probabilities |
 | `events/{id}/competitions/{id}/plays` | Play-by-play |
+| `events/{id}/competitions/{id}/situation` | Current game situation (down/distance/ball) |
+| `events/{id}/competitions/{id}/broadcasts` | Broadcast network info |
+| `events/{id}/competitions/{id}/predictor` | ESPN game predictor |
+| `events/{id}/competitions/{id}/powerindex` | ESPN Power Index for game |
+| `events/{id}/competitions/{id}/competitors/{id}/linescores` | Period-by-period scores |
+| `events/{id}/competitions/{id}/competitors/{id}/statistics` | Competitor stats |
 | `seasons` | Season list |
 | `seasons/{year}/teams` | Teams in a season |
+| `seasons/{year}/coaches` | Coaching staff |
 | `seasons/{year}/draft` | Draft data |
 | `seasons/{year}/futures` | Futures odds |
+| `seasons/{year}/powerindex` | Season-level Power Index / BPI |
+| `seasons/{year}/types/{type}/groups/{group}/qbr/{split}` | ESPN QBR (football) |
 | `standings` | League standings |
 | `teams` | Teams (detailed) |
 | `venues` | Venues/stadiums |
 | `leaders` | Statistical leaders |
 | `rankings` | Rankings |
 | `franchises` | Franchise history |
+| `coaches/{id}` | Individual coach profile |
+| `coaches/{id}/record/{type}` | Coaching record by type |
 
-### Core API v3 (Richer Schema)
+### Core API v3 (Enriched Schema)
 
 ```
 GET https://sports.core.api.espn.com/v3/sports/{sport}/{league}/{resource}
@@ -201,7 +247,47 @@ GET https://sports.core.api.espn.com/v3/sports/{sport}/{league}/{resource}
 | Resource | Description |
 |----------|-------------|
 | `athletes` | Athletes (enriched schema) |
+| `athletes/{id}` | Single athlete (enriched) |
+| `athletes/{id}/statisticslog` | Game log (enriched) |
+| `athletes/{id}/plays` | Athlete play history |
 | `leaders` | Statistical leaders |
+
+### Search & Web API
+
+```
+GET https://site.web.api.espn.com/apis/{path}
+```
+
+| Endpoint | Description |
+|----------|-------------|
+| `/search/v2?query={q}&limit={n}` | Global ESPN search |
+| `/search/v2?query={q}&sport={sport}` | Sport-scoped search |
+| `/common/v3/sports/{sport}/{league}/athletes/{id}/overview` | Rich athlete overview |
+| `/v2/scoreboard/header` | Scoreboard header/nav state |
+
+### CDN API (Real-Time Optimized)
+
+```
+GET https://cdn.espn.com/core/{sport}/{resource}?xhr=1
+```
+
+| Endpoint | Description |
+|----------|-------------|
+| `https://cdn.espn.com/core/{sport}/scoreboard?xhr=1&limit={n}` | CDN-optimized live scoreboard |
+
+> **Note:** CDN endpoints are optimized for speed and caching. Use `xhr=1` to receive JSON instead of HTML.
+
+### Now API (Real-Time News)
+
+```
+GET https://now.core.api.espn.com/v1/sports/news
+```
+
+| Endpoint | Description |
+|----------|-------------|
+| `/v1/sports/news?limit={n}` | Global real-time news feed |
+| `/v1/sports/news?sport={sport}&limit={n}` | Sport-filtered news |
+| `/v1/sports/news?leagues={league}&limit={n}` | League-filtered news |
 
 ---
 
@@ -316,9 +402,23 @@ GET /apis/v3/games/ffl/seasons/2024/segments/0/leagues/{league_id}
 ?view=mTeam
 ?view=mRoster
 ?view=mMatchup
+?view=mMatchupScore
 ?view=mSettings
 ?view=mDraftDetail
+?view=mScoreboard
+?view=mStandings
+?view=mStatus
+?view=kona_player_info
 ```
+
+### Segments
+
+| Segment | Description |
+|---------|-------------|
+| `0` | Entire season |
+| `1` | Playoff round 1 |
+| `2` | Playoff round 2 |
+| `3` | Championship |
 
 ### Authentication (Private Leagues)
 
@@ -334,16 +434,21 @@ Base: `sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}`
 |----------|-------------|
 | `/events/{id}/competitions/{id}/odds` | Game odds |
 | `/events/{id}/competitions/{id}/probabilities` | Win probabilities |
+| `/events/{id}/competitions/{id}/predictor` | ESPN game predictor |
 | `/seasons/{year}/futures` | Season futures |
 | `/seasons/{year}/types/{type}/teams/{id}/ats` | ATS records |
+| `/seasons/{year}/types/{type}/teams/{id}/odds-records` | Team odds records |
 
 **Betting Provider IDs:**
 
 | Provider | ID |
 |----------|----|
 | Caesars | 38 |
-| Bet365 | 2000 |
+| FanDuel | 37 |
 | DraftKings | 41 |
+| BetMGM | 58 |
+| ESPN BET | 68 |
+| Bet365 | 2000 |
 
 ---
 
@@ -360,8 +465,12 @@ Base: `sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}`
 | `limit` | Results limit | `100`, `1000` |
 | `page` | Page number | `1` |
 | `groups` | Conference ID | `8` (SEC) |
-| `enable` | Include extra data | `roster,stats,projection` |
+| `enable` | Inline-expand extra data | `roster`, `stats`, `injuries`, `projection` |
 | `active` | Active filter | `true` / `false` |
+| `lang` | Language / locale | `en`, `es`, `pt` |
+| `region` | Regional content filter | `us`, `gb`, `au` |
+| `xhr` | CDN JSON signal | `1` (returns JSON on cdn.espn.com) |
+| `calendartype` | Calendar view type | `ondays`, `offdays`, `blacklist` |
 
 ### Season Types
 
@@ -463,6 +572,70 @@ curl "http://localhost:8000/api/v1/events/?league=nfl&date=2024-12-15"
 ```
 
 See [espn_service/README.md](espn_service/README.md) for full service documentation.
+
+---
+
+## Notable Specialized Endpoints
+
+These endpoints are available but not part of the standard sport-scoped pattern:
+
+### 🏈 QBR (Quarterback Rating)
+
+```bash
+# Season QBR by conference
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{year}/types/{type}/groups/{group}/qbr/{split}
+
+# Weekly QBR
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{year}/types/{type}/weeks/{week}/qbr/{split}
+```
+
+> `split` values: `0` = totals, `1` = home, `2` = away
+
+### 🏀 Bracketology (NCAA Tournament)
+
+```bash
+# Live bracket projections
+GET https://sports.core.api.espn.com/v2/tournament/{tournamentId}/seasons/{year}/bracketology
+
+# Snapshot at a specific iteration
+GET https://sports.core.api.espn.com/v2/tournament/{tournamentId}/seasons/{year}/bracketology/{iteration}
+```
+
+### 📊 Power Index (BPI / SP+)
+
+```bash
+# Season-level
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/seasons/{year}/powerindex
+
+# Leaders
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/seasons/{year}/powerindex/leaders
+
+# By team
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/seasons/{year}/powerindex/{teamId}
+```
+
+### 🎓 Recruiting (College Sports)
+
+```bash
+# Recruit rankings by year
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/recruits
+
+# Recruiting class by team
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/classes/{teamId}
+```
+
+### 👔 Coaches
+
+```bash
+# All coaches for a season
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/seasons/{year}/coaches
+
+# Individual coach
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/coaches/{coachId}
+
+# Coach career record by type
+GET https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/coaches/{coachId}/record/{type}
+```
 
 ---
 
