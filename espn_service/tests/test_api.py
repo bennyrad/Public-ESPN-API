@@ -1,13 +1,12 @@
 """Tests for REST API endpoints."""
 
-from datetime import datetime, timezone
 from unittest.mock import MagicMock, patch
 
 import pytest
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from apps.espn.models import Competitor, Event, League, Sport, Team, Venue
+from apps.espn.models import Competitor, Event, League, Sport, Team
 from clients.espn_client import ESPNResponse
 
 
@@ -355,3 +354,90 @@ class TestPagination:
         assert len(data["results"]) == 5
         assert data["next"] is None
         assert data["previous"] is not None
+
+
+@pytest.mark.django_db
+class TestSportEndpoints:
+    """Tests for sport discovery endpoints."""
+
+    def test_list_sports_empty(self, api_client: APIClient):
+        """Test listing sports when none exist."""
+        response = api_client.get("/api/v1/sports/")
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["count"] == 0
+
+    def test_list_sports(self, api_client: APIClient, sport: Sport):
+        """Test listing sports returns ingested sports."""
+        response = api_client.get("/api/v1/sports/")
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["count"] == 1
+        result = response.json()["results"][0]
+        assert result["slug"] == "basketball"
+        assert result["name"] == "Basketball"
+
+    def test_get_sport_by_slug(self, api_client: APIClient, sport: Sport):
+        """Test retrieving a sport by its slug."""
+        response = api_client.get("/api/v1/sports/basketball/")
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert data["slug"] == "basketball"
+        assert data["name"] == "Basketball"
+
+    def test_get_sport_not_found(self, api_client: APIClient):
+        """Test retrieving a non-existent sport returns 404."""
+        response = api_client.get("/api/v1/sports/nonexistent/")
+
+        assert response.status_code == status.HTTP_404_NOT_FOUND
+
+
+@pytest.mark.django_db
+class TestLeagueEndpoints:
+    """Tests for league discovery endpoints."""
+
+    def test_list_leagues_empty(self, api_client: APIClient):
+        """Test listing leagues when none exist."""
+        response = api_client.get("/api/v1/leagues/")
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["count"] == 0
+
+    def test_list_leagues(self, api_client: APIClient, league: League):
+        """Test listing leagues returns ingested leagues."""
+        response = api_client.get("/api/v1/leagues/")
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["count"] == 1
+        result = response.json()["results"][0]
+        assert result["slug"] == "nba"
+        assert result["abbreviation"] == "NBA"
+        assert result["sport"]["slug"] == "basketball"
+
+    def test_list_leagues_filter_by_sport(
+        self, api_client: APIClient, league: League
+    ):
+        """Test filtering leagues by sport slug."""
+        response = api_client.get("/api/v1/leagues/", {"sport": "basketball"})
+
+        assert response.status_code == status.HTTP_200_OK
+        assert response.json()["count"] == 1
+
+        response = api_client.get("/api/v1/leagues/", {"sport": "football"})
+        assert response.json()["count"] == 0
+
+    def test_get_league_detail(self, api_client: APIClient, league: League):
+        """Test retrieving a league by ID."""
+        response = api_client.get(f"/api/v1/leagues/{league.id}/")
+
+        assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+        assert data["slug"] == "nba"
+        assert data["sport"]["slug"] == "basketball"
+
+    def test_get_league_not_found(self, api_client: APIClient):
+        """Test retrieving a non-existent league returns 404."""
+        response = api_client.get("/api/v1/leagues/999/")
+
+        assert response.status_code == status.HTTP_404_NOT_FOUND

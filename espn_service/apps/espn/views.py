@@ -8,13 +8,89 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.espn.filters import EventFilter, TeamFilter
-from apps.espn.models import Event, Team
+from apps.espn.models import Event, League, Sport, Team
 from apps.espn.serializers import (
     EventListSerializer,
     EventSerializer,
+    LeagueSerializer,
+    SportSerializer,
     TeamListSerializer,
     TeamSerializer,
 )
+
+
+class SportViewSet(viewsets.ReadOnlyModelViewSet):
+    """ViewSet for Sport discovery.
+
+    Provides list and retrieve actions for sports.
+    """
+
+    serializer_class = SportSerializer
+    lookup_field = "slug"
+
+    def get_queryset(self) -> QuerySet[Sport]:
+        """Get all sports."""
+        return Sport.objects.prefetch_related("leagues").order_by("name")
+
+    @extend_schema(
+        tags=["Discovery"],
+        summary="List sports",
+        description="Get all sports that have ingested data in the database.",
+    )
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        """List all sports."""
+        return super().list(request, *args, **kwargs)
+
+    @extend_schema(
+        tags=["Discovery"],
+        summary="Get sport details",
+        description="Retrieve a sport by slug (e.g., 'basketball', 'football').",
+    )
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
+        """Get sport details."""
+        return super().retrieve(request, *args, **kwargs)
+
+
+class LeagueViewSet(viewsets.ReadOnlyModelViewSet):
+    """ViewSet for League discovery.
+
+    Provides list and retrieve actions for leagues.
+    """
+
+    serializer_class = LeagueSerializer
+
+    def get_queryset(self) -> QuerySet[League]:
+        """Get league queryset with optional sport filter."""
+        qs = League.objects.select_related("sport").order_by("sport__name", "name")
+        sport = self.request.query_params.get("sport")
+        if sport:
+            qs = qs.filter(sport__slug__iexact=sport)
+        return qs
+
+    @extend_schema(
+        tags=["Discovery"],
+        summary="List leagues",
+        description="Get all leagues that have ingested data in the database.",
+        parameters=[
+            OpenApiParameter(
+                name="sport",
+                description="Filter by sport slug (e.g., 'basketball')",
+                type=str,
+            ),
+        ],
+    )
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        """List all leagues."""
+        return super().list(request, *args, **kwargs)
+
+    @extend_schema(
+        tags=["Discovery"],
+        summary="Get league details",
+        description="Retrieve a specific league by ID.",
+    )
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
+        """Get league details."""
+        return super().retrieve(request, *args, **kwargs)
 
 
 class TeamViewSet(viewsets.ReadOnlyModelViewSet):
@@ -87,8 +163,8 @@ class TeamViewSet(viewsets.ReadOnlyModelViewSet):
         ],
     )
     @action(detail=False, methods=["get"], url_path="espn/(?P<espn_id>[^/.]+)")
-    def by_espn_id(self, request: Request, espn_id: str) -> Response:
-        """Get team by ESPN ID."""
+    def by_espn_id(self, request: Request, espn_id: str) -> Response:  # noqa: ARG002
+
         queryset = self.get_queryset()
         team = queryset.filter(espn_id=espn_id).first()
         if not team:
@@ -194,8 +270,8 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
         ],
     )
     @action(detail=False, methods=["get"], url_path="espn/(?P<espn_id>[^/.]+)")
-    def by_espn_id(self, request: Request, espn_id: str) -> Response:
-        """Get event by ESPN ID."""
+    def by_espn_id(self, request: Request, espn_id: str) -> Response:  # noqa: ARG002
+
         queryset = self.get_queryset()
         event = queryset.filter(espn_id=espn_id).first()
         if not event:

@@ -3,119 +3,119 @@
 > Mixed Martial Arts from the UFC, Bellator, and dozens of international promotions.
 
 **Sport slug:** `mma`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/mma/`  
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/mma/`  
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/mma/`
 
 ---
 
 ## Leagues & Competitions
 
+> ESPN tracks **50+ MMA organizations**. Key slugs listed below. Use `https://sports.core.api.espn.com/v2/sports/mma/leagues` for the full list.
+
+### Major Promotions
+
 | Abbreviation | League Name | Slug | Full URL |
 | --- | --- | --- | --- |
-| `ACB` | Absolute Championship Berkut | `absolute` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/absolute` |
-| `AFFLICTION` | Affliction | `affliction` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/affliction` |
-| `BFC` | Bang Fighting Championships | `bang-fighting` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/bang-fighting` |
-| `BFC` | Banni Fight Combat | `banni-fight` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/banni-fight` |
-| `BFC` | Banzay Fight Championship | `banzay` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/banzay` |
-| `BFC` | Barracao Fight Championship | `barracao` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/barracao` |
-| `BFC` | Battlezone Fighting Championships | `battlezone` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/battlezone` |
-| `BFC` | Bellator Fighting Championship | `bellator` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/bellator` |
-| `BFC` | Benevides Fight Championship | `benevides` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/benevides` |
-| `BFC` | Big Fight Champions | `big-fight` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/big-fight` |
-| `BFC` | Blackout Fighting Championship | `blackout` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/blackout` |
-| `BFC` | Bosnia Fight Championship | `bosnia` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/bosnia` |
-| `BFC` | Boxe Fight Combat | `boxe` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/boxe` |
-| `BFC` | Brazilian Freestyle Circuit | `brazilian-freestyle` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/brazilian-freestyle` |
-| `BFC` | Budo Fighting Championships | `budo` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/budo` |
-| `CWFC` | Cage Warriors Fighting Championship | `cage-warriors` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/cage-warriors` |
-| `DREAM` | Dream | `dream` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/dream` |
-| `FNG` | Fight Nights Global | `fng` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/fng` |
-| `IFC` | Invicta FC | `ifc` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/ifc` |
-| `IFL` | International Fight League | `ifl` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/ifl` |
-| `K-1` | K-1 | `k1` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/k1` |
-| `KSW` | Konfrontacja Sztuk Walki | `ksw` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/ksw` |
-| `LFA` | Legacy Fighting Alliance | `lfa` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/lfa` |
-| `LFC` | Legacy Fighting Championship | `lfc` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/lfc` |
-| `M-1` | M-1 Mix-Fight Championship | `m1` | `http://sports.core.api.espn.com/v2/sports/mma/leagues/m1` |
+| `UFC` | Ultimate Fighting Championship | `ufc` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc` |
+| `BEL` | Bellator MMA | `bellator` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/bellator` |
+| `IFC` | Invicta FC (Women's) | `ifc` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/ifc` |
+| `LFA` | Legacy Fighting Alliance | `lfa` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/lfa` |
+| `KSW` | Konfrontacja Sztuk Walki | `ksw` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/ksw` |
+| `CW` | Cage Warriors | `cage-warriors` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/cage-warriors` |
+| `ACB` | Absolute Championship Berkut | `absolute` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/absolute` |
+| `FNG` | Fight Nights Global | `fng` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/fng` |
+| `K1` | K-1 | `k1` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/k1` |
+| `M1` | M-1 Mix-Fight Championship | `m1` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/m1` |
+| `IFL` | International Fight League | `ifl` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/ifl` |
+| `DRM` | Dream | `dream` | `https://sports.core.api.espn.com/v2/sports/mma/leagues/dream` |
+
+### Additional International Promotions (partial)
+
+| Slug | Name |
+|------|------|
+| `affliction` | Affliction |
+| `bang-fighting` | Bang Fighting Championships |
+| `banzay` | Banzay Fight Championship |
+| `battlezone` | Battlezone Fighting Championships |
+| `blackout` | Blackout Fighting Championship |
+| `bosnia` | Bosnia Fight Championship |
+| `boxe` | Boxe Fight Combat |
+| `brazilian-freestyle` | Brazilian Freestyle Circuit |
+| `budo` | Budo Fighting Championships |
+| `lfc` | Legacy Fighting Championship |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}<sub-path>`  
-> Replace `{league}` with a league slug from the table above.
-
-### Common Query Parameters
-
-Most list endpoints support: `page` (int), `limit` (int). Additional filters are documented per endpoint.
 
 ### Seasons & Calendar
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Rankings & Awards
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
 
 ### Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/mma/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -129,21 +129,34 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data (scores, rosters, news, etc.)
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/mma/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Event results & schedules |
+| `athletes/{id}` | Fighter profile |
+| `news` | Latest news |
+
+---
+
 ## Example API Calls
 
 ```bash
-# List leagues for MMA
-curl "http://sports.core.api.espn.com/v2/sports/mma/leagues"
+# UFC scoreboard (events)
+curl "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
 
-# Get Absolute Championship Berkut teams
-curl "http://sports.core.api.espn.com/v2/sports/mma/leagues/absolute/teams"
+# Get all MMA leagues (core API)
+curl "https://sports.core.api.espn.com/v2/sports/mma/leagues"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/mma/leagues/absolute/events"
+# UFC athletes (core API)
+curl "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/athletes?limit=100&active=true"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/mma/leagues/absolute/athletes"
-
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/mma/leagues/absolute/standings"
+# UFC events (core API)
+curl "https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc/events"
 ```

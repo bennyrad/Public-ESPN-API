@@ -1,97 +1,93 @@
 # 🏉 Rugby League
 
-> Rugby League.
+> Rugby League encompassing NRL, Super League, State of Origin, and international competitions.
 
 **Sport slug:** `rugby-league`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/rugby-league/`  
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/rugby-league/`  
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/rugby-league/`
 
 ---
 
 ## Leagues & Competitions
 
-| Abbreviation | League Name | Slug | Full URL |
-| --- | --- | --- | --- |
-| `NRL` | Rugby League | `3` | `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3` |
+> **⚠️ Rugby League uses numeric IDs as league slugs.** All competitions are served under a single parent slug: `3`. Use `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues` to discover available IDs.
+
+| League Name | Numeric ID (slug) | Full URL |
+| --- | --- | --- |
+| Rugby League (NRL, Super League, State of Origin, etc.) | `3` | `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3` |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}<sub-path>`  
-> Replace `{league}` with a league slug from the table above.
-
-### Common Query Parameters
-
-Most list endpoints support: `page` (int), `limit` (int). Additional filters are documented per endpoint.
 
 ### Seasons & Calendar
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Rankings & Awards
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
 
 ### Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -105,21 +101,44 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data (scores, rosters, news, etc.)
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/rugby-league/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live scores & schedules |
+| `scoreboard?dates={YYYYMMDD}` | Scores for a specific date |
+| `teams` | All teams |
+| `standings` | League standings |
+| `news` | Latest news |
+
+---
+
 ## Example API Calls
 
+> **Remember:** Rugby League uses numeric league ID `3` — not named slugs like `nrl`.
+
 ```bash
-# List leagues for Rugby League
-curl "http://sports.core.api.espn.com/v2/sports/rugby-league/leagues"
+# Get all rugby league competitions (returns full structure under ID 3)
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues"
 
-# Get Rugby League teams
-curl "http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/teams"
+# NRL / Super League scoreboard (all rugby league under ID 3)
+curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/events"
+# Standings
+curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/standings"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/athletes"
+# Teams (core API)
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/teams"
 
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/standings"
+# Events (core API)
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/events"
+
+# Athletes
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/athletes?limit=50&active=true"
 ```

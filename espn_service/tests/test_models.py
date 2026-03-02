@@ -1,6 +1,6 @@
 """Tests for ESPN models."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -118,7 +118,7 @@ class TestEventModel:
         event = Event.objects.create(
             league=league,
             espn_id="123",
-            date=datetime.now(timezone.utc),
+            date=datetime.now(UTC),
             name="Test Event",
             season_year=2024,
             season_type=2,
@@ -132,7 +132,7 @@ class TestEventModel:
             Event.objects.create(
                 league=league,
                 espn_id="401584666",  # Same as event fixture
-                date=datetime.now(timezone.utc),
+                date=datetime.now(UTC),
                 name="Duplicate Event",
                 season_year=2024,
                 season_type=2,

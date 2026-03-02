@@ -36,7 +36,7 @@ class HealthCheckView(APIView):
             },
         },
     )
-    def get(self, request: Request) -> Response:
+    def get(self, request: Request) -> Response:  # noqa: ARG002
         """Return health status including database connectivity."""
         health_status = {
             "status": "healthy",

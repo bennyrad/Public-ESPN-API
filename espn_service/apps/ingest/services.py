@@ -244,7 +244,7 @@ class ScoreboardIngestionService:
         return status_map.get(state, Event.STATUS_SCHEDULED), type_data.get("detail", "")
 
     def _parse_event_data(
-        self, event_data: dict[str, Any], league: League
+        self, event_data: dict[str, Any], league: League  # noqa: ARG002
     ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any] | None]:
         """Parse event data from ESPN API.
 

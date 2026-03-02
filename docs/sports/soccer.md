@@ -1,9 +1,9 @@
-﻿#  Soccer
+#  Soccer
 
 > Association football  Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, UCL, and international tournaments.
 
 **Sport slug:** `soccer`
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/soccer/`
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/soccer/`
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/soccer/`
 
 ---
@@ -266,7 +266,7 @@
 ## API Endpoints
 
 > All endpoints follow the pattern:
-> `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}<sub-path>`
+> `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}<sub-path>`
 > Replace `{league}` with a slug from the tables above.
 
 ### Common Query Parameters
@@ -277,58 +277,58 @@ Most list endpoints support: `page` (int), `limit` (int).
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `groups`, `profile`, `types`, `season`, `weeks`, `tournamentId` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `statuses`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `groups`, `profile`, `types`, `season`, `weeks`, `tournamentId` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `statuses`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `active`, `national`, `group`, `dates`, `types` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `active`, `national`, `group`, `dates`, `types` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
 
 ### Standings / Rankings / Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/standings` | `getStandings` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/standings` | `getStandings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/soccer/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -342,24 +342,117 @@ Most list endpoints support: `page` (int), `limit` (int).
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data.
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live scores & schedules |
+| `scoreboard?dates={YYYYMMDD}` | Scores for a specific date |
+| `teams` | All teams in the league |
+| `teams/{id}` | Single team details |
+| `teams/{id}/roster` | Team squad |
+| `teams/{id}/injuries` | Injury report |
+| `teams/{id}/schedule` | Team schedule |
+| `standings` | League table (points, GD, etc.) |
+| `news` | Latest match & transfer news |
+| `summary?event={id}` | Full match report |
+
+---
+
+## Specialized Endpoints
+
+### Live Match Stats (Core API)
+
+```bash
+# Match play-by-play (goals, cards, subs)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/plays?limit=300"
+
+# Live match situation (possession, in-game context)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/situation"
+
+# Win probability
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/probabilities"
+
+# Match odds
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/odds"
+```
+
+### Standings with Groups
+
+```bash
+# Full EPL table (points, GD, form)
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/standings"
+
+# UCL group stage standings
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/standings"
+
+# Core API standings (richer data)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/standings"
+```
+
+### Top Scorers & Leaders
+
+```bash
+# Premier League top scorers / leaders
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/leaders"
+
+# Season-specific leaders
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/seasons/2025/leaders"
+```
+
+---
+
 ## Example API Calls
 
 ```bash
 # List all soccer leagues
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues"
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues"
 
-# Premier League teams
-curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams"
+# Premier League scoreboard (today)
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
 
 # Premier League standings
 curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/standings"
 
-# Premier League scoreboard
-curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+# Premier League teams
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams"
+
+# UEFA Champions League scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard"
+
+# MLS scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard"
+
+# La Liga standings
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/standings"
+
+# Bundesliga scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard"
+
+# FIFA World Cup scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
 
 # Champions League events (core API)
-curl "http://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.champions/events"
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.champions/events"
 
-# EPL athletes (v3)
+# EPL athletes (v3, all active)
 curl "https://sports.core.api.espn.com/v3/sports/soccer/eng.1/athletes?limit=100&active=true"
+
+# Arsenal roster
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/359/roster"
+
+# Arsenal injuries
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/359/injuries"
+
+# NWSL scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/scoreboard"
+
+# Women's Champions League scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/scoreboard"
 ```

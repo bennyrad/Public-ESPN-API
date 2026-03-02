@@ -1,10 +1,11 @@
 """Tests for ingestion services."""
 
-from unittest.mock import MagicMock, patch
+from datetime import UTC
+from unittest.mock import MagicMock
 
 import pytest
 
-from apps.espn.models import Competitor, Event, League, Sport, Team, Venue
+from apps.espn.models import Competitor, Event, League, Sport, Team
 from apps.ingest.services import (
     IngestionResult,
     ScoreboardIngestionService,
@@ -25,7 +26,9 @@ class TestGetOrCreateSportAndLeague:
         assert sport.slug == "basketball"
         assert sport.name == "Basketball"
         assert league.slug == "nba"
-        assert league.name == "NBA"
+        # league.name stores the full official name from LEAGUE_INFO
+        assert league.name == "National Basketball Association"
+        # league.abbreviation stores the short form
         assert league.abbreviation == "NBA"
         assert league.sport == sport
 
@@ -202,12 +205,12 @@ class TestScoreboardIngestionService:
             league=league, espn_id="2", abbreviation="BOS", display_name="Boston Celtics"
         )
 
-        from datetime import datetime, timezone
+        from datetime import datetime
 
         Event.objects.create(
             league=league,
             espn_id="401584666",
-            date=datetime(2024, 12, 15, tzinfo=timezone.utc),
+            date=datetime(2024, 12, 15, tzinfo=UTC),
             name="Old Name",
             status=Event.STATUS_SCHEDULED,
             season_year=2024,

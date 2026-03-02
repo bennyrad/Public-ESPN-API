@@ -36,7 +36,7 @@ class TeamFilter(django_filters.FilterSet):
         fields = ["sport", "league", "is_active", "abbreviation"]
 
     def search_filter(
-        self, queryset: QuerySet, name: str, value: str
+        self, queryset: QuerySet, name: str, value: str  # noqa: ARG002
     ) -> QuerySet:
         """Custom search filter across multiple fields."""
         if not value:
@@ -106,7 +106,7 @@ class EventFilter(django_filters.FilterSet):
         ]
 
     def team_filter(
-        self, queryset: QuerySet, name: str, value: str
+        self, queryset: QuerySet, name: str, value: str  # noqa: ARG002
     ) -> QuerySet:
         """Filter events by team (ESPN ID or abbreviation)."""
         if not value:

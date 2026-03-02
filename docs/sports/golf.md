@@ -3,7 +3,7 @@
 > Professional golf tours including PGA TOUR, LPGA, DP World Tour (European Tour), LIV Golf, and more.
 
 **Sport slug:** `golf`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/golf/`  
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/golf/`  
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/golf/`
 
 ---
@@ -12,22 +12,22 @@
 
 | Abbreviation | League Name | Slug | Full URL |
 | --- | --- | --- | --- |
-| `SGA` | PGA TOUR Champions | `champions-tour` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour` |
-| `EUR` | DP World Tour | `eur` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/eur` |
-| `LIV` | LIV Golf Invitational Series | `liv` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/liv` |
-| `LPGA` | Ladies Pro Golf Association | `lpga` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/lpga` |
-| `OLYM` | Olympic Golf - Men | `mens-olympics-golf` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/mens-olympics-golf` |
-| `KORN FERRY` | Korn Ferry Tour | `ntw` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/ntw` |
-| `PGA` | PGA TOUR | `pga` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/pga` |
-| `TGL` | TGL | `tgl` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/tgl` |
-| `OLYW` | Olympic Golf - Women | `womens-olympics-golf` | `http://sports.core.api.espn.com/v2/sports/golf/leagues/womens-olympics-golf` |
+| `SGA` | PGA TOUR Champions | `champions-tour` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour` |
+| `EUR` | DP World Tour | `eur` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/eur` |
+| `LIV` | LIV Golf Invitational Series | `liv` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/liv` |
+| `LPGA` | Ladies Pro Golf Association | `lpga` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/lpga` |
+| `OLYM` | Olympic Golf - Men | `mens-olympics-golf` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/mens-olympics-golf` |
+| `KORN FERRY` | Korn Ferry Tour | `ntw` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/ntw` |
+| `PGA` | PGA TOUR | `pga` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/pga` |
+| `TGL` | TGL | `tgl` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/tgl` |
+| `OLYW` | Olympic Golf - Women | `womens-olympics-golf` | `https://sports.core.api.espn.com/v2/sports/golf/leagues/womens-olympics-golf` |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}<sub-path>`  
+> `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}<sub-path>`  
 > Replace `{league}` with a league slug from the table above.
 
 ### Common Query Parameters
@@ -38,68 +38,68 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Rankings & Awards
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
 
 ### Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/golf/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -113,21 +113,41 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data (scores, rosters, news, etc.)
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/golf/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live tournament scores |
+| `scoreboard?dates={YYYYMMDD}` | Scores for a specific date range |
+| `leaderboard?tournamentId={id}` | Tournament leaderboard |
+| `news` | Latest news |
+
+---
+
 ## Example API Calls
 
 ```bash
-# List leagues for Golf
-curl "http://sports.core.api.espn.com/v2/sports/golf/leagues"
+# PGA TOUR scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard"
 
-# Get PGA TOUR Champions teams
-curl "http://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour/teams"
+# LPGA scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/golf/lpga/scoreboard"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour/events"
+# LIV Golf scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/golf/liv/scoreboard"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour/athletes"
+# Get all golf leagues (core API)
+curl "https://sports.core.api.espn.com/v2/sports/golf/leagues"
 
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/golf/leagues/champions-tour/standings"
+# PGA TOUR athletes (core API)
+curl "https://sports.core.api.espn.com/v2/sports/golf/leagues/pga/athletes?limit=100&active=true"
+
+# PGA TOUR events (core API)
+curl "https://sports.core.api.espn.com/v2/sports/golf/leagues/pga/events"
 ```

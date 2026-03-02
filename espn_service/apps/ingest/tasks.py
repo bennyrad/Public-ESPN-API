@@ -12,6 +12,70 @@ from apps.ingest.services import ScoreboardIngestionService, TeamIngestionServic
 
 logger = structlog.get_logger(__name__)
 
+# All major leagues to refresh in scheduled tasks.
+# Covers all 17 ESPN sports with primary professional leagues.
+ALL_LEAGUES_CONFIG: list[tuple[str, str]] = [
+    # Football
+    ("football", "nfl"),
+    ("football", "college-football"),
+    ("football", "cfl"),
+    ("football", "ufl"),
+    # Basketball
+    ("basketball", "nba"),
+    ("basketball", "wnba"),
+    ("basketball", "mens-college-basketball"),
+    ("basketball", "womens-college-basketball"),
+    ("basketball", "nba-development"),
+    # Baseball
+    ("baseball", "mlb"),
+    ("baseball", "college-baseball"),
+    # Hockey
+    ("hockey", "nhl"),
+    ("hockey", "mens-college-hockey"),
+    # Soccer (major leagues)
+    ("soccer", "eng.1"),
+    ("soccer", "usa.1"),
+    ("soccer", "esp.1"),
+    ("soccer", "ger.1"),
+    ("soccer", "ita.1"),
+    ("soccer", "fra.1"),
+    ("soccer", "mex.1"),
+    ("soccer", "uefa.champions"),
+    ("soccer", "uefa.europa"),
+    ("soccer", "usa.nwsl"),
+    # MMA
+    ("mma", "ufc"),
+    # Golf
+    ("golf", "pga"),
+    ("golf", "lpga"),
+    ("golf", "liv"),
+    # Tennis
+    ("tennis", "atp"),
+    ("tennis", "wta"),
+    # Racing
+    ("racing", "f1"),
+    ("racing", "irl"),
+    ("racing", "nascar-premier"),
+    # Rugby (numeric slugs)
+    ("rugby", "164205"),   # Rugby World Cup
+    ("rugby", "180659"),   # Six Nations
+    ("rugby", "267979"),   # Gallagher Premiership
+    ("rugby", "242041"),   # Super Rugby Pacific
+    # Rugby League
+    ("rugby-league", "3"),
+    # Lacrosse
+    ("lacrosse", "pll"),
+    ("lacrosse", "nll"),
+    # Australian Football
+    ("australian-football", "afl"),
+    # Cricket
+    ("cricket", "icc.t20"),
+    ("cricket", "ipl"),
+    # Volleyball
+    ("volleyball", "fivb.w"),
+    ("volleyball", "fivb.m"),
+]
+
 
 @shared_task(
     bind=True,
@@ -111,21 +175,15 @@ def refresh_teams_task(
 def refresh_all_teams_task(self) -> dict:
     """Celery task to refresh team data for all configured leagues.
 
-    Returns:
-        Dict with aggregated results by league
-    """
-    # Default leagues to refresh
-    leagues_config = [
-        ("basketball", "nba"),
-        ("basketball", "wnba"),
-        ("football", "nfl"),
-        ("baseball", "mlb"),
-        ("hockey", "nhl"),
-    ]
+    Covers all 17 ESPN sports. Failures per league are logged and
+    aggregated; the task completes even if individual leagues fail.
 
+    Returns:
+        Dict with aggregated results by league key (sport/league)
+    """
     results = {}
 
-    for sport, league in leagues_config:
+    for sport, league in ALL_LEAGUES_CONFIG:
         try:
             service = TeamIngestionService()
             result = service.ingest_teams(sport, league)
@@ -146,23 +204,16 @@ def refresh_all_teams_task(self) -> dict:
 def refresh_daily_scoreboards_task(self) -> dict:
     """Celery task to refresh today's scoreboards for all leagues.
 
+    Covers all 17 ESPN sports. Failures per league are logged and
+    aggregated; the task completes even if individual leagues fail.
+
     Returns:
-        Dict with aggregated results by league
+        Dict with aggregated results by league key (sport/league)
     """
     today = datetime.now().strftime("%Y%m%d")
-
-    # Default leagues to refresh
-    leagues_config = [
-        ("basketball", "nba"),
-        ("basketball", "wnba"),
-        ("football", "nfl"),
-        ("baseball", "mlb"),
-        ("hockey", "nhl"),
-    ]
-
     results = {}
 
-    for sport, league in leagues_config:
+    for sport, league in ALL_LEAGUES_CONFIG:
         try:
             service = ScoreboardIngestionService()
             result = service.ingest_scoreboard(sport, league, today)
@@ -178,3 +229,4 @@ def refresh_daily_scoreboards_task(self) -> dict:
             results[f"{sport}/{league}"] = {"error": str(e)}
 
     return results
+

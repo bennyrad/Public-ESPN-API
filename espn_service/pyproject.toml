@@ -90,6 +90,15 @@ ignore = [
     "ARG001", # unused function argument
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "ARG002",  # pytest fixtures must match by name even if unused
+    "B017",    # blind Exception catch is acceptable in test integrity checks
+]
+"apps/ingest/management/commands/*" = [
+    "ARG002",  # Django management command handle() signature is fixed
+]
+
 [tool.ruff.lint.isort]
 known-first-party = ["config", "apps", "clients"]
 

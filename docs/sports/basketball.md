@@ -3,7 +3,7 @@
 > Basketball from the NBA, WNBA, college, and international leagues (FIBA, NBL).
 
 **Sport slug:** `basketball`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/basketball/`  
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/basketball/`  
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/basketball/`
 
 ---
@@ -12,28 +12,28 @@
 
 | Abbreviation | League Name | Slug | Full URL |
 | --- | --- | --- | --- |
-| `FIBA` | FIBA World Cup | `fiba` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba` |
-| `NCAAM` | NCAA Men's Basketball | `mens-college-basketball` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball` |
-| `OLYMPICS` | Olympics Men's Basketball | `mens-olympics-basketball` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-olympics-basketball` |
-| `NBA` | National Basketball Association | `nba` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba` |
-| `NBA G LEAGUE` | NBA G League | `nba-development` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-development` |
-| `NBACC` | NBA California Classic Summer League | `nba-summer-california` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-california` |
-| `NBAGS` | Golden State Summer League | `nba-summer-golden-state` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-golden-state` |
-| `NBALV` | Las Vegas Summer League | `nba-summer-las-vegas` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-las-vegas` |
-| `NBAOR` | Orlando Summer League | `nba-summer-orlando` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-orlando` |
-| `NBAGS` | Sacramento Summer League | `nba-summer-sacramento` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-sacramento` |
-| `NBAUT` | Salt Lake City Summer League | `nba-summer-utah` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-utah` |
-| `NBL` | National Basketball League | `nbl` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/nbl` |
-| `WNBA` | Women's National Basketball Association | `wnba` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/wnba` |
-| `NCAAW` | NCAA Women's Basketball | `womens-college-basketball` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball` |
-| `OLYMPICS` | Olympics Women's Basketball | `womens-olympics-basketball` | `http://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-olympics-basketball` |
+| `FIBA` | FIBA World Cup | `fiba` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba` |
+| `NCAAM` | NCAA Men's Basketball | `mens-college-basketball` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball` |
+| `OLYMPICS` | Olympics Men's Basketball | `mens-olympics-basketball` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-olympics-basketball` |
+| `NBA` | National Basketball Association | `nba` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba` |
+| `NBA G LEAGUE` | NBA G League | `nba-development` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-development` |
+| `NBACC` | NBA California Classic Summer League | `nba-summer-california` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-california` |
+| `NBAGS` | Golden State Summer League | `nba-summer-golden-state` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-golden-state` |
+| `NBALV` | Las Vegas Summer League | `nba-summer-las-vegas` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-las-vegas` |
+| `NBAOR` | Orlando Summer League | `nba-summer-orlando` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-orlando` |
+| `NBAGS` | Sacramento Summer League | `nba-summer-sacramento` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-sacramento` |
+| `NBAUT` | Salt Lake City Summer League | `nba-summer-utah` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba-summer-utah` |
+| `NBL` | National Basketball League | `nbl` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/nbl` |
+| `WNBA` | Women's National Basketball Association | `wnba` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/wnba` |
+| `NCAAW` | NCAA Women's Basketball | `womens-college-basketball` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-college-basketball` |
+| `OLYMPICS` | Olympics Women's Basketball | `womens-olympics-basketball` | `https://sports.core.api.espn.com/v2/sports/basketball/leagues/womens-olympics-basketball` |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}<sub-path>`  
+> `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}<sub-path>`  
 > Replace `{league}` with a league slug from the table above.
 
 ### Common Query Parameters
@@ -44,68 +44,68 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Rankings & Awards
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
 
 ### Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/basketball/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -119,21 +119,96 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data (scores, rosters, news, etc.)
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/basketball/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live scores & schedules |
+| `scoreboard?dates={YYYYMMDD}` | Scores for a specific date |
+| `teams` | All teams |
+| `teams/{id}` | Single team |
+| `teams/{id}/roster` | Team roster |
+| `teams/{id}/schedule` | Team schedule |
+| `teams/{id}/injuries` | Injury report |
+| `standings` | League standings |
+| `news` | Latest news |
+| `news?team={id}` | Team-specific news |
+| `calendar/regular-season` | Regular season schedule weeks |
+| `summary?event={id}` | Full game summary |
+
+---
+
+## Specialized Endpoints
+
+### Bracketology (NCAA Tournament)
+
+```bash
+# Live bracket projections
+GET https://sports.core.api.espn.com/v2/tournament/{tournamentId}/seasons/{year}/bracketology
+
+# Bracket snapshot at a specific iteration
+GET https://sports.core.api.espn.com/v2/tournament/{tournamentId}/seasons/{year}/bracketology/{iteration}
+```
+
+> Common tournament IDs: `22` = NCAA Men's, `23` = NCAA Women's
+
+### Power Index (BPI)
+
+```bash
+# Season BPI ratings
+GET https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{year}/powerindex
+
+# BPI leaders
+GET https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{year}/powerindex/leaders
+
+# BPI by team
+GET https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{year}/powerindex/{teamId}
+```
+
+---
+
 ## Example API Calls
 
 ```bash
-# List leagues for Basketball
-curl "http://sports.core.api.espn.com/v2/sports/basketball/leagues"
+# NBA scoreboard (today)
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
 
-# Get FIBA World Cup teams
-curl "http://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba/teams"
+# NBA scoreboard for a specific date
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20250320"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba/events"
+# NBA standings
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba/athletes"
+# LA Lakers roster
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/13/roster"
 
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba/standings"
+# LA Lakers injury report
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/13/injuries"
+
+# Men's College Basketball scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?dates=20250320-20250323"
+
+# Get all basketball leagues (core API)
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues"
+
+# NBA teams (core API)
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/teams?limit=50"
+
+# NBA athletes (core API)
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/athletes?limit=100&active=true"
+
+# NBA standings (core API)
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/standings"
+
+# WNBA teams
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues/wnba/teams"
+
+# FIBA World Cup teams
+curl "https://sports.core.api.espn.com/v2/sports/basketball/leagues/fiba/teams"
 ```

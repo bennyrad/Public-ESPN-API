@@ -1,5 +1,7 @@
 """Pytest configuration and fixtures."""
 
+from datetime import UTC
+
 import pytest
 from rest_framework.test import APIClient
 
@@ -86,14 +88,14 @@ def team2(db, league: League) -> Team:
 @pytest.fixture
 def event(db, league: League, venue: Venue) -> Event:
     """Create a test event."""
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     return Event.objects.create(
         league=league,
         venue=venue,
         espn_id="401584666",
         uid="s:40~l:46~e:401584666",
-        date=datetime(2024, 12, 15, 19, 30, tzinfo=timezone.utc),
+        date=datetime(2024, 12, 15, 19, 30, tzinfo=UTC),
         name="Test Team at Opponent Team",
         short_name="TST @ OPP",
         season_year=2024,

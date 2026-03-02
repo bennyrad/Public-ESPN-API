@@ -139,9 +139,8 @@ class TestESPNClient:
             status_code=404,
         )
 
-        with ESPNClient() as client:
-            with pytest.raises(ESPNNotFoundError):
-                client.get_team("basketball", "nba", "999")
+        with ESPNClient() as client, pytest.raises(ESPNNotFoundError):
+            client.get_team("basketball", "nba", "999")
 
     def test_handle_429_response(self, httpx_mock: HTTPXMock):
         """Test 429 response raises ESPNRateLimitError."""
@@ -150,9 +149,8 @@ class TestESPNClient:
             status_code=429,
         )
 
-        with ESPNClient() as client:
-            with pytest.raises(ESPNRateLimitError):
-                client.get_scoreboard("basketball", "nba")
+        with ESPNClient() as client, pytest.raises(ESPNRateLimitError):
+            client.get_scoreboard("basketball", "nba")
 
     def test_handle_500_response_with_retry(self, httpx_mock: HTTPXMock):
         """Test 500 response triggers retry and eventually raises error."""
@@ -162,9 +160,8 @@ class TestESPNClient:
             status_code=500,
         )
 
-        with ESPNClient() as client:
-            with pytest.raises(ESPNClientError):
-                client.get_scoreboard("basketball", "nba")
+        with ESPNClient() as client, pytest.raises(ESPNClientError):
+            client.get_scoreboard("basketball", "nba")
 
     def test_handle_invalid_json(self, httpx_mock: HTTPXMock):
         """Test invalid JSON response raises ESPNClientError."""
@@ -174,9 +171,8 @@ class TestESPNClient:
             headers={"content-type": "application/json"},
         )
 
-        with ESPNClient() as client:
-            with pytest.raises(ESPNClientError) as exc_info:
-                client.get_scoreboard("basketball", "nba")
+        with ESPNClient() as client, pytest.raises(ESPNClientError) as exc_info:
+            client.get_scoreboard("basketball", "nba")
 
         assert "Failed to parse" in str(exc_info.value)
 
@@ -219,8 +215,7 @@ class TestESPNClientRetry:
             url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
         )
 
-        with ESPNClient() as client:
-            with pytest.raises(ESPNClientError) as exc_info:
-                client.get_scoreboard("basketball", "nba")
+        with ESPNClient() as client, pytest.raises(ESPNClientError) as exc_info:
+            client.get_scoreboard("basketball", "nba")
 
         assert "connection error" in str(exc_info.value).lower()

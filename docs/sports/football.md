@@ -3,7 +3,7 @@
 > American and Canadian football, including the NFL, CFL, College Football, UFL, and XFL.
 
 **Sport slug:** `football`  
-**Base URL (v2):** `http://sports.core.api.espn.com/v2/sports/football/`  
+**Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/football/`  
 **Base URL (v3):** `https://sports.core.api.espn.com/v3/sports/football/`
 
 ---
@@ -12,18 +12,18 @@
 
 | Abbreviation | League Name | Slug | Full URL |
 | --- | --- | --- | --- |
-| `CFL` | Canadian Football League | `cfl` | `http://sports.core.api.espn.com/v2/sports/football/leagues/cfl` |
-| `NCAAF` | NCAA - Football | `college-football` | `http://sports.core.api.espn.com/v2/sports/football/leagues/college-football` |
-| `NFL` | National Football League | `nfl` | `http://sports.core.api.espn.com/v2/sports/football/leagues/nfl` |
-| `UFL` | United Football League | `ufl` | `http://sports.core.api.espn.com/v2/sports/football/leagues/ufl` |
-| `XFL` | XFL | `xfl` | `http://sports.core.api.espn.com/v2/sports/football/leagues/xfl` |
+| `CFL` | Canadian Football League | `cfl` | `https://sports.core.api.espn.com/v2/sports/football/leagues/cfl` |
+| `NCAAF` | NCAA - Football | `college-football` | `https://sports.core.api.espn.com/v2/sports/football/leagues/college-football` |
+| `NFL` | National Football League | `nfl` | `https://sports.core.api.espn.com/v2/sports/football/leagues/nfl` |
+| `UFL` | United Football League | `ufl` | `https://sports.core.api.espn.com/v2/sports/football/leagues/ufl` |
+| `XFL` | XFL | `xfl` | `https://sports.core.api.espn.com/v2/sports/football/leagues/xfl` |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}<sub-path>`  
+> `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}<sub-path>`  
 > Replace `{league}` with a league slug from the table above.
 
 ### Common Query Parameters
@@ -34,68 +34,68 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/calendar` | `getCalendars` | `dates`, `page`, `limit`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons` | `getSeasons` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `dates`, `sort`, `type`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `sort`, `position`, `status`, `sort`, `sortByRanks`, `stats`, `groupId`, `position`, `qualified`, `rookie`, `international`, `category`, `type`, `sort`, `sortByRanks`, `stats`, `groupId`, `qualified`, `category`, `sort`, `groupId`, `allStar`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/athletes` | `getAthletes` | `active`, `sort`, `page`, `limit`, `seasontypes`, `played`, `teamtypes`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/draft` | `getDraftByYear` | `page`, `limit`, `available`, `position`, `team`, `sort`, `filter` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/freeagents` | `getFreeAgents` | `page`, `limit`, `types`, `oldteams`, `newteams`, `position`, `sort` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/seasons/{season}/manufacturers` | `getManufacturers` | `page`, `limit` |
 
 ### Teams
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/teams` | `getTeams` | `page`, `limit`, `utcOffset`, `dates`, `start`, `end`, `eventsback`, `eventsforward`, `eventsrange`, `eventcompleted`, `groups`, `profile`, `competitions.types`, `types`, `season`, `weeks`, `tournamentId`, `active`, `national`, `start`, `group`, `dates`, `recent`, `types`, `winnertype`, `date`, `eventsback`, `excludestatuses`, `includestatuses`, `dates`, `groups`, `smartdates`, `advance`, `utcOffset`, `weeks`, `seasontype` |
 
 ### Athletes / Players
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/athletes` | `getAthletes` | `page`, `limit`, `group`, `gender`, `types`, `country`, `association`, `lastNameInitial`, `lastName`, `active`, `statuses`, `sort`, `position` |
 
 ### Events / Games
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}` | `getEvent` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}` | `getCompetition` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page`, `types`, `period`, `sort`, `source`, `showsubplays` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/broadcasts` | `getBroadcasts` | `lang`, `region`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/competitors/{competitor}` | `getCompetitor` | `page`, `limit`, `date`, `group`, `position`, `week`, `qualified`, `types`, `limit`, `page` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/odds` | `getCompetitionOdds` | `provider.priority`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/officials` | `getOfficials` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/events/{event}/competitions/{competition}/plays/{play}/personnel` | `getPersonnel` | `page`, `limit` |
 
 ### News & Media
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/media` | `getMedia` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/media` | `getMedia` | `page`, `limit` |
 
 ### Rankings & Awards
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/rankings` | `getRankings` | `page`, `limit` |
 
 ### Venues
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/venues` | `getVenues` | `page`, `limit` |
 
 ### Other
 
 | Endpoint | Method ID | Query Params |
 | --- | --- | --- |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
-| `http://sports.core.api.espn.com/v2/sports/football/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/casinos` | `getCasinos` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/circuits` | `getCircuits` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/countries` | `getCountries` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/franchises` | `getFranchises` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/positions` | `getPositions` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/providers` | `getProviders` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/recruiting` | `getRecruitingSeasons` | `page`, `limit`, `sort`, `position`, `status` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/season` | `getCurrentSeason` | `page`, `limit` |
+| `https://sports.core.api.espn.com/v2/sports/football/leagues/{league}/tournaments` | `getTournaments` | `majorsOnly`, `page`, `limit` |
 
 ---
 
@@ -109,21 +109,110 @@ Most list endpoints support: `page` (int), `limit` (int). Additional filters are
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data (scores, rosters, news, etc.)
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/football/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live scores & schedules |
+| `scoreboard?week={n}&seasontype=2` | Scores for a specific week |
+| `teams` | All teams |
+| `teams/{id}` | Single team |
+| `teams/{id}/roster` | Team roster |
+| `teams/{id}/schedule` | Team schedule |
+| `teams/{id}/depthcharts` | Depth charts |
+| `teams/{id}/injuries` | Injury report |
+| `standings` | League standings |
+| `news` | Latest news |
+| `news?team={id}` | Team-specific news |
+| `calendar/regular-season` | Regular season weeks |
+| `summary?event={id}` | Full game summary |
+
+---
+
+## Specialized Endpoints
+
+### QBR (Total Quarterback Rating)
+
+```bash
+# Season totals QBR (NFL)
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{year}/types/2/groups/1/qbr/0
+
+# Weekly QBR (NFL)
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/{year}/types/2/weeks/{week}/qbr/0
+
+# College Football QBR (NCAAF)
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/types/2/groups/80/qbr/0
+```
+
+> **Split values:** `0` = totals, `1` = home, `2` = away
+
+### Recruiting
+
+```bash
+# Top recruiting class by year (NCAAF)
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/recruits
+
+# Recruiting class by team
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/classes/{teamId}
+```
+
+### Power Index (SP+)
+
+```bash
+# Season SP+ ratings
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/powerindex
+
+# SP+ leaders
+GET https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/{year}/powerindex/leaders
+```
+
+---
+
 ## Example API Calls
 
 ```bash
-# List leagues for Football
-curl "http://sports.core.api.espn.com/v2/sports/football/leagues"
+# NFL scoreboard (all games this week)
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
-# Get Canadian Football League teams
-curl "http://sports.core.api.espn.com/v2/sports/football/leagues/cfl/teams"
+# NFL Week 1 scores
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=1&seasontype=2"
 
-# Get current season events
-curl "http://sports.core.api.espn.com/v2/sports/football/leagues/cfl/events"
+# NFL standings
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/standings"
 
-# Get athletes (players)
-curl "http://sports.core.api.espn.com/v2/sports/football/leagues/cfl/athletes"
+# Dallas Cowboys roster
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/6/roster"
 
-# Get standings
-curl "http://sports.core.api.espn.com/v2/sports/football/leagues/cfl/standings"
+# Dallas Cowboys depth chart
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/6/depthcharts"
+
+# Dallas Cowboys injury report
+curl "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/6/injuries"
+
+# College Football scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?week=1&seasontype=2&groups=80"
+
+# Get all NFL leagues
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues"
+
+# NFL teams (core API)
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/teams?limit=50"
+
+# NFL current season events
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events"
+
+# NFL athletes (core API)
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/athletes?limit=100&active=true"
+
+# NFL standings (core API)
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/standings"
+
+# CFL teams
+curl "https://sports.core.api.espn.com/v2/sports/football/leagues/cfl/teams"
 ```
