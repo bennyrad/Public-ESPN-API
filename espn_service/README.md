@@ -7,7 +7,7 @@ A production-ready Django REST API for ingesting and querying ESPN sports data.
 - **Data Ingestion**: Fetch and persist data from ESPN's public/undocumented API endpoints
 - **REST API**: Clean, paginated endpoints for querying teams, events, and games
 - **Background Jobs**: Celery tasks for scheduled data refresh
-- **Multi-Sport Support**: NBA, NFL, MLB, NHL, WNBA, and more
+- **Multi-Sport Support**: All 17 ESPN sports — NFL, NBA, MLB, NHL, WNBA, MLS, UFC, PGA, F1, NRL, and more
 - **Production-Ready**: Docker, PostgreSQL, Redis, structured logging, health checks
 
 ## Quick Start
@@ -100,15 +100,37 @@ This service consumes ESPN's undocumented public APIs. Below is a reference of a
 |-------|--------|------------|-------------|
 | Football | NFL | `football` | `nfl` |
 | Football | College | `football` | `college-football` |
+| Football | CFL | `football` | `cfl` |
+| Football | UFL | `football` | `ufl` |
 | Basketball | NBA | `basketball` | `nba` |
 | Basketball | WNBA | `basketball` | `wnba` |
-| Basketball | College Men's | `basketball` | `mens-college-basketball` |
+| Basketball | NCAAM | `basketball` | `mens-college-basketball` |
+| Basketball | NCAAW | `basketball` | `womens-college-basketball` |
 | Baseball | MLB | `baseball` | `mlb` |
 | Hockey | NHL | `hockey` | `nhl` |
-| Soccer | Various | `soccer` | See below |
+| Soccer | EPL | `soccer` | `eng.1` |
+| Soccer | MLS | `soccer` | `usa.1` |
+| Soccer | UCL | `soccer` | `uefa.champions` |
+| Soccer | 260+ leagues | `soccer` | See [soccer.md](../docs/sports/soccer.md) |
 | MMA | UFC | `mma` | `ufc` |
 | Golf | PGA | `golf` | `pga` |
+| Golf | LPGA | `golf` | `lpga` |
+| Golf | LIV | `golf` | `liv` |
+| Tennis | ATP | `tennis` | `atp` |
+| Tennis | WTA | `tennis` | `wta` |
 | Racing | F1 | `racing` | `f1` |
+| Racing | IndyCar | `racing` | `irl` |
+| Racing | NASCAR Cup | `racing` | `nascar-premier` |
+| Rugby Union | World Cup | `rugby` | `164205` |
+| Rugby Union | Six Nations | `rugby` | `180659` |
+| Rugby League | NRL / Super League | `rugby-league` | `3` |
+| Lacrosse | PLL | `lacrosse` | `pll` |
+| Lacrosse | NLL | `lacrosse` | `nll` |
+| Australian Football | AFL | `australian-football` | `afl` |
+| Cricket | ICC T20 | `cricket` | `icc.t20` |
+| Cricket | IPL | `cricket` | `ipl` |
+| Volleyball | FIVB Women | `volleyball` | `fivb.w` |
+| Volleyball | FIVB Men | `volleyball` | `fivb.m` |
 
 ### Soccer League Codes
 
@@ -194,8 +216,20 @@ curl http://localhost:8000/healthz
 ### Management Commands
 
 ```bash
+# Ingest teams for a single league
 python manage.py ingest_teams basketball nba
+
+# Ingest scoreboard for a single league
 python manage.py ingest_scoreboard basketball nba --date=20241215
+
+# Ingest teams for ALL 17 sports (40+ leagues)
+python manage.py ingest_all_teams
+
+# Filter to a single sport
+python manage.py ingest_all_teams --sport soccer
+
+# Preview what would run without ingesting
+python manage.py ingest_all_teams --dry-run
 ```
 
 ---
@@ -214,8 +248,10 @@ celery -A config beat -l INFO
 
 | Task | Schedule | Description |
 |------|----------|-------------|
-| `refresh_scoreboard_task` | Hourly | Refresh NBA/NFL scoreboards |
-| `refresh_all_teams_task` | Weekly | Refresh all team data |
+| `refresh_scoreboard_task` | On-demand | Refresh scoreboard for a specific sport/league/date |
+| `refresh_teams_task` | On-demand | Refresh teams for a specific sport/league |
+| `refresh_all_teams_task` | Weekly | Refresh all team data (40+ leagues, all 17 sports) |
+| `refresh_daily_scoreboards_task` | Hourly | Refresh today's scoreboards (40+ leagues, all 17 sports) |
 
 ---
 
