@@ -1,6 +1,6 @@
 # 🏉 Rugby League
 
-> Rugby League.
+> Rugby League encompassing NRL, Super League, State of Origin, and international competitions.
 
 **Sport slug:** `rugby-league`  
 **Base URL (v2):** `https://sports.core.api.espn.com/v2/sports/rugby-league/`  
@@ -10,21 +10,17 @@
 
 ## Leagues & Competitions
 
-| Abbreviation | League Name | Slug | Full URL |
-| --- | --- | --- | --- |
-| `NRL` | Rugby League | `3` | `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3` |
+> **⚠️ Rugby League uses numeric IDs as league slugs.** All competitions are served under a single parent slug: `3`. Use `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues` to discover available IDs.
+
+| League Name | Numeric ID (slug) | Full URL |
+| --- | --- | --- |
+| Rugby League (NRL, Super League, State of Origin, etc.) | `3` | `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3` |
 
 ---
 
 ## API Endpoints
 
 > All endpoints below follow the pattern:  
-> `https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/{league}<sub-path>`  
-> Replace `{league}` with a league slug from the table above.
-
-### Common Query Parameters
-
-Most list endpoints support: `page` (int), `limit` (int). Additional filters are documented per endpoint.
 
 ### Seasons & Calendar
 
@@ -125,19 +121,24 @@ GET https://site.api.espn.com/apis/site/v2/sports/rugby-league/{league}/{resourc
 
 ## Example API Calls
 
+> **Remember:** Rugby League uses numeric league ID `3` — not named slugs like `nrl`.
+
 ```bash
-# NRL scoreboard
-curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/nrl/scoreboard"
-
-# Super League scoreboard
-curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/superleague/scoreboard"
-
-# Get all rugby league competitions (core API)
+# Get all rugby league competitions (returns full structure under ID 3)
 curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues"
 
-# NRL teams (core API)
-curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/nrl/teams"
+# NRL / Super League scoreboard (all rugby league under ID 3)
+curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard"
 
-# NRL events (core API)
-curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/nrl/events"
+# Standings
+curl "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/standings"
+
+# Teams (core API)
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/teams"
+
+# Events (core API)
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/events"
+
+# Athletes
+curl "https://sports.core.api.espn.com/v2/sports/rugby-league/leagues/3/athletes?limit=50&active=true"
 ```

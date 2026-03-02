@@ -342,24 +342,117 @@ Most list endpoints support: `page` (int), `limit` (int).
 
 ---
 
+## Site API Endpoints
+
+> These use `site.api.espn.com` and return user-friendly data.
+
+```
+GET https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/{resource}
+```
+
+| Resource | Description |
+|----------|-------------|
+| `scoreboard` | Live scores & schedules |
+| `scoreboard?dates={YYYYMMDD}` | Scores for a specific date |
+| `teams` | All teams in the league |
+| `teams/{id}` | Single team details |
+| `teams/{id}/roster` | Team squad |
+| `teams/{id}/injuries` | Injury report |
+| `teams/{id}/schedule` | Team schedule |
+| `standings` | League table (points, GD, etc.) |
+| `news` | Latest match & transfer news |
+| `summary?event={id}` | Full match report |
+
+---
+
+## Specialized Endpoints
+
+### Live Match Stats (Core API)
+
+```bash
+# Match play-by-play (goals, cards, subs)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/plays?limit=300"
+
+# Live match situation (possession, in-game context)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/situation"
+
+# Win probability
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/probabilities"
+
+# Match odds
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/{id}/competitions/{id}/odds"
+```
+
+### Standings with Groups
+
+```bash
+# Full EPL table (points, GD, form)
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/standings"
+
+# UCL group stage standings
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/standings"
+
+# Core API standings (richer data)
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/standings"
+```
+
+### Top Scorers & Leaders
+
+```bash
+# Premier League top scorers / leaders
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/leaders"
+
+# Season-specific leaders
+curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/seasons/2025/leaders"
+```
+
+---
+
 ## Example API Calls
 
 ```bash
 # List all soccer leagues
 curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues"
 
-# Premier League teams
-curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams"
+# Premier League scoreboard (today)
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
 
 # Premier League standings
 curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/standings"
 
-# Premier League scoreboard
-curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+# Premier League teams
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams"
+
+# UEFA Champions League scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard"
+
+# MLS scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/scoreboard"
+
+# La Liga standings
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/standings"
+
+# Bundesliga scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/scoreboard"
+
+# FIFA World Cup scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard"
 
 # Champions League events (core API)
 curl "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.champions/events"
 
-# EPL athletes (v3)
+# EPL athletes (v3, all active)
 curl "https://sports.core.api.espn.com/v3/sports/soccer/eng.1/athletes?limit=100&active=true"
+
+# Arsenal roster
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/359/roster"
+
+# Arsenal injuries
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/359/injuries"
+
+# NWSL scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/usa.nwsl/scoreboard"
+
+# Women's Champions League scoreboard
+curl "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.wchampions/scoreboard"
 ```
