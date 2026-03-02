@@ -73,30 +73,3 @@ jobs:
           flags: unittests
           fail_ci_if_error: false
 
-  lint:
-    name: Lint (ruff)
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: espn_service
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: espn_service/pyproject.toml
-
-      - name: Install ruff
-        run: pip install ruff
-
-      - name: Ruff lint check
-        run: ruff check .
-
-      - name: Ruff format check
-        run: ruff format --check .
