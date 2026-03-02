@@ -1007,6 +1007,262 @@ class ESPNClient:
         path = f"/v3/sports/{sport}/{league}/leaders"
         return self.get(path, domain=ESPNEndpointDomain.CORE)
 
+    # --------------------- Team Sub-Resource Endpoints ---------------------
+
+    def get_team_injuries(
+        self,
+        sport: str,
+        league: str,
+        team_id: str,
+    ) -> ESPNResponse:
+        """Get injury report for a specific team.
+
+        Args:
+            sport: Sport slug (e.g., "football", "basketball")
+            league: League slug (e.g., "nfl", "nba")
+            team_id: ESPN team ID
+
+        Returns:
+            ESPNResponse with injury data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/teams/{team_id}/injuries"
+        logger.info("fetching_team_injuries", sport=sport, league=league, team_id=team_id)
+        return self.get(path, domain=ESPNEndpointDomain.SITE)
+
+    def get_team_depth_chart(
+        self,
+        sport: str,
+        league: str,
+        team_id: str,
+    ) -> ESPNResponse:
+        """Get depth chart for a specific team.
+
+        Args:
+            sport: Sport slug (e.g., "football", "basketball")
+            league: League slug (e.g., "nfl", "nba")
+            team_id: ESPN team ID
+
+        Returns:
+            ESPNResponse with depth chart data grouped by position
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/teams/{team_id}/depthcharts"
+        logger.info("fetching_team_depth_chart", sport=sport, league=league, team_id=team_id)
+        return self.get(path, domain=ESPNEndpointDomain.SITE)
+
+    def get_team_transactions(
+        self,
+        sport: str,
+        league: str,
+        team_id: str,
+    ) -> ESPNResponse:
+        """Get recent transactions/moves for a specific team.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            team_id: ESPN team ID
+
+        Returns:
+            ESPNResponse with transaction data
+        """
+        path = f"/apis/site/v2/sports/{sport}/{league}/teams/{team_id}/transactions"
+        logger.info("fetching_team_transactions", sport=sport, league=league, team_id=team_id)
+        return self.get(path, domain=ESPNEndpointDomain.SITE)
+
+    # --------------------- Game Situation Endpoints ---------------------
+
+    def get_game_situation(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get current game situation (down, distance, possession, etc.).
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (defaults to event_id)
+
+        Returns:
+            ESPNResponse with current game situation data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/situation"
+        )
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    def get_game_predictor(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get ESPN game predictor (projected winner/score) for a game.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (defaults to event_id)
+
+        Returns:
+            ESPNResponse with predictor data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/predictor"
+        )
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    def get_game_broadcasts(
+        self,
+        sport: str,
+        league: str,
+        event_id: str,
+        competition_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get broadcast network info for a game.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            event_id: ESPN event ID
+            competition_id: Competition ID (defaults to event_id)
+
+        Returns:
+            ESPNResponse with broadcast network data
+        """
+        comp_id = competition_id or event_id
+        path = (
+            f"/v2/sports/{sport}/leagues/{league}"
+            f"/events/{event_id}/competitions/{comp_id}/broadcasts"
+        )
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    # --------------------- Coaches Endpoints ---------------------
+
+    def get_coaches(
+        self,
+        sport: str,
+        league: str,
+        season: int | None = None,
+        limit: int = 100,
+    ) -> ESPNResponse:
+        """Get coaching staff for a league season.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            season: Season year (uses current season if None)
+            limit: Maximum coaches to return
+
+        Returns:
+            ESPNResponse with coaches data
+        """
+        if season:
+            path = f"/v2/sports/{sport}/leagues/{league}/seasons/{season}/coaches"
+        else:
+            path = f"/v2/sports/{sport}/leagues/{league}/coaches"
+        params: dict[str, Any] = {"limit": limit}
+        logger.info("fetching_coaches", sport=sport, league=league, season=season)
+        return self.get(path, domain=ESPNEndpointDomain.CORE, params=params)
+
+    def get_coach(
+        self,
+        sport: str,
+        league: str,
+        coach_id: str,
+    ) -> ESPNResponse:
+        """Get a single coach's profile.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            coach_id: ESPN coach ID
+
+        Returns:
+            ESPNResponse with coach data
+        """
+        path = f"/v2/sports/{sport}/leagues/{league}/coaches/{coach_id}"
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    # --------------------- QBR Endpoint ---------------------
+
+    def get_qbr(
+        self,
+        league: str,
+        season: int,
+        season_type: int = 2,
+        group: int = 1,
+        split: int = 0,
+        week: int | None = None,
+    ) -> ESPNResponse:
+        """Get ESPN Total Quarterback Rating (QBR) data.
+
+        Only applicable to football leagues (nfl, college-football).
+
+        Args:
+            league: League slug ("nfl" or "college-football")
+            season: Season year (e.g., 2024)
+            season_type: 1=pre, 2=regular, 3=post
+            group: Conference group ID (1=NFL, 80=FBS for NCAAF)
+            split: 0=totals, 1=home, 2=away
+            week: Optional week number (returns weekly QBR if provided)
+
+        Returns:
+            ESPNResponse with QBR data
+        """
+        if week is not None:
+            path = (
+                f"/v2/sports/football/leagues/{league}"
+                f"/seasons/{season}/types/{season_type}/weeks/{week}/qbr/{split}"
+            )
+        else:
+            path = (
+                f"/v2/sports/football/leagues/{league}"
+                f"/seasons/{season}/types/{season_type}/groups/{group}/qbr/{split}"
+            )
+        logger.info("fetching_qbr", league=league, season=season, week=week)
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+    # --------------------- Power Index Endpoint ---------------------
+
+    def get_power_index(
+        self,
+        sport: str,
+        league: str,
+        season: int,
+        team_id: str | None = None,
+    ) -> ESPNResponse:
+        """Get ESPN Power Index (BPI/SP+/FPI) data.
+
+        Args:
+            sport: Sport slug
+            league: League slug
+            season: Season year
+            team_id: Optional team ID (returns league-wide data if None)
+
+        Returns:
+            ESPNResponse with power index data
+        """
+        if team_id:
+            path = (
+                f"/v2/sports/{sport}/leagues/{league}"
+                f"/seasons/{season}/powerindex/{team_id}"
+            )
+        else:
+            path = f"/v2/sports/{sport}/leagues/{league}/seasons/{season}/powerindex"
+        logger.info("fetching_power_index", sport=sport, league=league, season=season)
+        return self.get(path, domain=ESPNEndpointDomain.CORE)
+
+
 
 # Default singleton instance
 _default_client: ESPNClient | None = None

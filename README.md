@@ -67,6 +67,8 @@ These apps are live examples of what you can build using this documentation and 
 - [Notable Specialized Endpoints](#notable-specialized-endpoints)
 - [Parameters Reference](#parameters-reference)
 - [ESPN Service (Django Implementation)](#espn-service-django-implementation)
+- [Response Schemas](docs/response_schemas.md)
+- [CHANGELOG](CHANGELOG.md)
 
 ---
 
