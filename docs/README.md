@@ -26,17 +26,7 @@ Each file covers leagues & competitions, API endpoints, Site API resources, and 
 | [baseball.md](sports/baseball.md) | ⚾ Baseball | MLB, NCAAB, WBC, Caribbean/Winter Leagues |
 | [hockey.md](sports/hockey.md) | 🏒 Hockey | NHL, NCAAH, Olympics |
 | [golf.md](sports/golf.md) | ⛳ Golf | PGA TOUR, LPGA, LIV, DP World Tour, TGL |
-| [racing.md](sports/racing.md) | 🏎️ Racing | Formula 1, IndyCar, NASCAR Cup/Xfinity/Truck |
 | [tennis.md](sports/tennis.md) | 🎾 Tennis | ATP, WTA |
-| [mma.md](sports/mma.md) | 🥊 MMA | UFC, Bellator, LFA, and 50+ promotions |
-| [rugby.md](sports/rugby.md) | 🏉 Rugby Union | World Cup, Six Nations, Premiership, Super Rugby |
-| [rugby_league.md](sports/rugby_league.md) | 🏉 Rugby League | NRL, Super League |
-| [lacrosse.md](sports/lacrosse.md) | 🥍 Lacrosse | PLL, NLL, NCAA Men's/Women's |
-| [cricket.md](sports/cricket.md) | 🏏 Cricket | ICC T20, ICC ODI, IPL |
-| [volleyball.md](sports/volleyball.md) | 🏐 Volleyball | FIVB Men/Women, NCAA Men's/Women's |
-| [water_polo.md](sports/water_polo.md) | 🤽 Water Polo | FINA Men/Women, NCAA Men's/Women's |
-| [field_hockey.md](sports/field_hockey.md) | 🏑 Field Hockey | FIH Men/Women, NCAA Women's |
-| [australian_football.md](sports/australian_football.md) | 🦘 Australian Football | AFL |
 
 ### API Reference
 | File | Description |
@@ -57,10 +47,7 @@ Each file covers leagues & competitions, API endpoints, Site API resources, and 
 | `sports.core.api.espn.com/v2/` | Core data — events, odds, play-by-play, athletes, coaches | Leagues: `$ref`, `id`, `name`, `season`, `teams`, `athletes`; Collections: `count`, `pageIndex`, `pageSize`, `items[]` |
 
 **Sport-specific exceptions:**
-- 🏏 **Cricket scoreboard** → core API: `sports.core.api.espn.com/v2/sports/cricket/leagues/{league}/events`
-- 🏉 **Rugby Union standings** → core API: `sports.core.api.espn.com/v2/sports/rugby/leagues/{league}/standings`
 - ⛳ **Golf / 🎾 Tennis scoreboard** → slug required: `pga`, `lpga`, `atp`, `wta` (not numeric IDs)
-
 
 ---
 
