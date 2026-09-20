@@ -6,20 +6,12 @@ from rest_framework import serializers
 class IngestScoreboardRequestSerializer(serializers.Serializer):
     """Request serializer for scoreboard ingestion."""
 
-    sport = serializers.CharField(max_length=50, help_text="Sport slug (e.g., 'football')")
-    league = serializers.CharField(max_length=50, help_text="League slug (e.g., 'nfl')")
     date = serializers.CharField(
         max_length=8,
         required=False,
         allow_blank=True,
         help_text="Date in YYYYMMDD format (optional, defaults to today)",
     )
-
-    def validate_sport(self, value: str) -> str:
-        return value.lower().strip()
-
-    def validate_league(self, value: str) -> str:
-        return value.lower().strip()
 
     def validate_date(self, value: str) -> str | None:
         if not value:
@@ -32,57 +24,25 @@ class IngestScoreboardRequestSerializer(serializers.Serializer):
 
 class IngestTeamsRequestSerializer(serializers.Serializer):
     """Request serializer for teams ingestion."""
-
-    sport = serializers.CharField(max_length=50, help_text="Sport slug (e.g., 'football')")
-    league = serializers.CharField(max_length=50, help_text="League slug (e.g., 'nfl')")
-
-    def validate_sport(self, value: str) -> str:
-        return value.lower().strip()
-
-    def validate_league(self, value: str) -> str:
-        return value.lower().strip()
+    pass
 
 
 class IngestNewsRequestSerializer(serializers.Serializer):
     """Request serializer for news ingestion."""
 
-    sport = serializers.CharField(max_length=50, help_text="Sport slug (e.g., 'football')")
-    league = serializers.CharField(max_length=50, help_text="League slug (e.g., 'nfl')")
     limit = serializers.IntegerField(
         default=50, min_value=1, max_value=200, help_text="Number of articles to fetch (default 50)"
     )
 
-    def validate_sport(self, value: str) -> str:
-        return value.lower().strip()
-
-    def validate_league(self, value: str) -> str:
-        return value.lower().strip()
-
 
 class IngestInjuriesRequestSerializer(serializers.Serializer):
     """Request serializer for injury ingestion."""
-
-    sport = serializers.CharField(max_length=50, help_text="Sport slug (e.g., 'football')")
-    league = serializers.CharField(max_length=50, help_text="League slug (e.g., 'nfl')")
-
-    def validate_sport(self, value: str) -> str:
-        return value.lower().strip()
-
-    def validate_league(self, value: str) -> str:
-        return value.lower().strip()
+    pass
 
 
 class IngestTransactionsRequestSerializer(serializers.Serializer):
     """Request serializer for transaction ingestion."""
-
-    sport = serializers.CharField(max_length=50, help_text="Sport slug (e.g., 'football')")
-    league = serializers.CharField(max_length=50, help_text="League slug (e.g., 'nfl')")
-
-    def validate_sport(self, value: str) -> str:
-        return value.lower().strip()
-
-    def validate_league(self, value: str) -> str:
-        return value.lower().strip()
+    pass
 
 
 class IngestionResultSerializer(serializers.Serializer):

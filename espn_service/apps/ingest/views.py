@@ -24,6 +24,8 @@ from apps.ingest.services import (
 )
 
 logger = structlog.get_logger(__name__)
+NFL_SPORT = "football"
+NFL_LEAGUE = "nfl"
 
 
 class IngestScoreboardView(APIView):
@@ -48,14 +50,12 @@ class IngestScoreboardView(APIView):
         serializer = IngestScoreboardRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        sport = serializer.validated_data["sport"]
-        league = serializer.validated_data["league"]
         date = serializer.validated_data.get("date")
 
-        logger.info("scoreboard_ingestion_requested", sport=sport, league=league, date=date)
+        logger.info("scoreboard_ingestion_requested", sport=NFL_SPORT, league=NFL_LEAGUE, date=date)
 
         service = ScoreboardIngestionService()
-        result = service.ingest_scoreboard(sport, league, date)
+        result = service.ingest_scoreboard(NFL_SPORT, NFL_LEAGUE, date)
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
@@ -81,13 +81,10 @@ class IngestTeamsView(APIView):
         serializer = IngestTeamsRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        sport = serializer.validated_data["sport"]
-        league = serializer.validated_data["league"]
-
-        logger.info("teams_ingestion_requested", sport=sport, league=league)
+        logger.info("teams_ingestion_requested", sport=NFL_SPORT, league=NFL_LEAGUE)
 
         service = TeamIngestionService()
-        result = service.ingest_teams(sport, league)
+        result = service.ingest_teams(NFL_SPORT, NFL_LEAGUE)
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
@@ -113,14 +110,12 @@ class IngestNewsView(APIView):
         serializer = IngestNewsRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        sport = serializer.validated_data["sport"]
-        league = serializer.validated_data["league"]
         limit = serializer.validated_data.get("limit", 50)
 
-        logger.info("news_ingestion_requested", sport=sport, league=league, limit=limit)
+        logger.info("news_ingestion_requested", sport=NFL_SPORT, league=NFL_LEAGUE, limit=limit)
 
         service = NewsIngestionService()
-        result = service.ingest_news(sport, league, limit=limit)
+        result = service.ingest_news(NFL_SPORT, NFL_LEAGUE, limit=limit)
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
@@ -146,13 +141,10 @@ class IngestInjuriesView(APIView):
         serializer = IngestInjuriesRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        sport = serializer.validated_data["sport"]
-        league = serializer.validated_data["league"]
-
-        logger.info("injuries_ingestion_requested", sport=sport, league=league)
+        logger.info("injuries_ingestion_requested", sport=NFL_SPORT, league=NFL_LEAGUE)
 
         service = InjuryIngestionService()
-        result = service.ingest_injuries(sport, league)
+        result = service.ingest_injuries(NFL_SPORT, NFL_LEAGUE)
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)
 
 
@@ -178,11 +170,8 @@ class IngestTransactionsView(APIView):
         serializer = IngestTransactionsRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        sport = serializer.validated_data["sport"]
-        league = serializer.validated_data["league"]
-
-        logger.info("transactions_ingestion_requested", sport=sport, league=league)
+        logger.info("transactions_ingestion_requested", sport=NFL_SPORT, league=NFL_LEAGUE)
 
         service = TransactionIngestionService()
-        result = service.ingest_transactions(sport, league)
+        result = service.ingest_transactions(NFL_SPORT, NFL_LEAGUE)
         return Response(IngestionResultSerializer(result.to_dict()).data, status=status.HTTP_200_OK)

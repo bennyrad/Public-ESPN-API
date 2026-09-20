@@ -252,62 +252,8 @@ class Competitor(TimestampMixin):
             return None
 
 
-class Athlete(TimestampMixin):
-    """Athlete entity (optional - for detailed stats)."""
-
-    espn_id = models.CharField(max_length=50, unique=True, db_index=True)
-    uid = models.CharField(max_length=100, blank=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    full_name = models.CharField(max_length=100)
-    display_name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=50, blank=True)
-
-    # Current team (nullable - athletes can be free agents)
-    team = models.ForeignKey(
-        Team,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="athletes",
-    )
-
-    # Position
-    position = models.CharField(max_length=50, blank=True)
-    position_abbreviation = models.CharField(max_length=10, blank=True)
-
-    # Jersey
-    jersey = models.CharField(max_length=10, blank=True)
-
-    # Status
-    is_active = models.BooleanField(default=True)
-
-    # Physical attributes
-    height = models.CharField(max_length=20, blank=True)  # e.g., "6'8"
-    weight = models.PositiveIntegerField(null=True, blank=True)  # in pounds
-    age = models.PositiveSmallIntegerField(null=True, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-    birth_place = models.CharField(max_length=100, blank=True)
-
-    # Media
-    headshot = models.URLField(max_length=500, blank=True)
-
-    # Links
-    links = models.JSONField(default=list, blank=True)
-
-    # Raw data for extensibility
-    raw_data = models.JSONField(default=dict, blank=True)
-
-    class Meta:
-        ordering = ["last_name", "first_name"]
-
-    def __str__(self) -> str:
-        team_abbr = self.team.abbreviation if self.team else "FA"
-        return f"{self.display_name} ({team_abbr})"
-
-
 # ---------------------------------------------------------------------------
-# New models — added in audit expansion
+# NFL-focused models
 # ---------------------------------------------------------------------------
 
 
@@ -420,28 +366,3 @@ class Transaction(TimestampMixin):
         return self.description[:80]
 
 
-class AthleteSeasonStats(TimestampMixin):
-    """Athlete season statistics from common/v3 stats endpoint."""
-
-    athlete = models.ForeignKey(
-        Athlete, on_delete=models.CASCADE, related_name="season_stats", null=True, blank=True
-    )
-    league = models.ForeignKey(
-        League, on_delete=models.CASCADE, related_name="athlete_season_stats"
-    )
-    athlete_espn_id = models.CharField(max_length=50, db_index=True)
-    athlete_name = models.CharField(max_length=100, blank=True)
-    season_year = models.PositiveIntegerField(db_index=True)
-    season_type = models.PositiveSmallIntegerField(default=2)  # 2=regular, 3=postseason
-    # Flexible stats JSON — structure varies by sport
-    stats = models.JSONField(default=dict, blank=True)
-    raw_data = models.JSONField(default=dict, blank=True)
-
-    class Meta:
-        ordering = ["-season_year"]
-        unique_together = [["league", "athlete_espn_id", "season_year", "season_type"]]
-        verbose_name = "Athlete Season Stats"
-        verbose_name_plural = "Athlete Season Stats"
-
-    def __str__(self) -> str:
-        return f"{self.athlete_name} — {self.league.slug.upper()} {self.season_year}"

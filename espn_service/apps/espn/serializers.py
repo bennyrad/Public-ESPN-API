@@ -3,43 +3,20 @@
 from rest_framework import serializers
 
 from apps.espn.models import (
-    Athlete,
-    AthleteSeasonStats,
     Competitor,
     Event,
     Injury,
-    League,
     NewsArticle,
-    Sport,
     Team,
     Transaction,
     Venue,
 )
 
 
-class SportSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sport
-        fields = ["id", "slug", "name", "created_at", "updated_at"]
-        read_only_fields = ["id", "created_at", "updated_at"]
-
-
-class LeagueSerializer(serializers.ModelSerializer):
-    sport = SportSerializer(read_only=True)
-    sport_slug = serializers.CharField(write_only=True, required=False)
-
-    class Meta:
-        model = League
-        fields = ["id", "slug", "name", "abbreviation", "sport", "sport_slug", "created_at", "updated_at"]
-        read_only_fields = ["id", "created_at", "updated_at"]
-
-
-class LeagueMinimalSerializer(serializers.ModelSerializer):
-    sport_slug = serializers.CharField(source="sport.slug", read_only=True)
-
-    class Meta:
-        model = League
-        fields = ["id", "slug", "name", "abbreviation", "sport_slug"]
+class LeagueMinimalSerializer(serializers.Serializer):
+    slug = serializers.CharField(read_only=True)
+    name = serializers.CharField(read_only=True)
+    abbreviation = serializers.CharField(read_only=True)
 
 
 class VenueSerializer(serializers.ModelSerializer):
@@ -121,8 +98,6 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class EventListSerializer(serializers.ModelSerializer):
-    league_slug = serializers.CharField(source="league.slug", read_only=True)
-    sport_slug = serializers.CharField(source="league.sport.slug", read_only=True)
     venue_name = serializers.CharField(source="venue.name", read_only=True, allow_null=True)
     competitors = CompetitorSerializer(many=True, read_only=True)
 
@@ -130,22 +105,8 @@ class EventListSerializer(serializers.ModelSerializer):
         model = Event
         fields = [
             "id", "espn_id", "date", "name", "short_name", "status", "status_detail",
-            "league_slug", "sport_slug", "venue_name", "competitors",
+            "venue_name", "competitors",
         ]
-
-
-class AthleteSerializer(serializers.ModelSerializer):
-    team = TeamMinimalSerializer(read_only=True)
-
-    class Meta:
-        model = Athlete
-        fields = [
-            "id", "espn_id", "uid", "first_name", "last_name", "full_name",
-            "display_name", "short_name", "position", "position_abbreviation",
-            "jersey", "is_active", "height", "weight", "age", "birth_date",
-            "birth_place", "headshot", "team", "created_at", "updated_at",
-        ]
-        read_only_fields = ["id", "created_at", "updated_at"]
 
 
 # ---------------------------------------------------------------------------
@@ -221,23 +182,6 @@ class TransactionSerializer(serializers.ModelSerializer):
             "id", "espn_id", "date", "description", "type",
             "athlete_name", "athlete_espn_id",
             "league_slug", "sport_slug", "team_abbreviation",
-            "created_at", "updated_at",
-        ]
-        read_only_fields = ["id", "created_at", "updated_at"]
-
-
-class AthleteSeasonStatsSerializer(serializers.ModelSerializer):
-    """Serializer for AthleteSeasonStats model."""
-
-    league_slug = serializers.CharField(source="league.slug", read_only=True)
-    sport_slug = serializers.CharField(source="league.sport.slug", read_only=True)
-
-    class Meta:
-        model = AthleteSeasonStats
-        fields = [
-            "id", "athlete_espn_id", "athlete_name",
-            "season_year", "season_type", "stats",
-            "league_slug", "sport_slug",
             "created_at", "updated_at",
         ]
         read_only_fields = ["id", "created_at", "updated_at"]

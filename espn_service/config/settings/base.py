@@ -230,14 +230,8 @@ ESPN_CLIENT = {
     "CORE_API_BASE_URL": env(
         "ESPN_CORE_API_BASE_URL", default="https://sports.core.api.espn.com"
     ),
-    "WEB_V3_API_BASE_URL": env(
-        "ESPN_WEB_V3_API_BASE_URL", default="https://site.web.api.espn.com"
-    ),
     "CDN_API_BASE_URL": env(
         "ESPN_CDN_API_BASE_URL", default="https://cdn.espn.com"
-    ),
-    "NOW_API_BASE_URL": env(
-        "ESPN_NOW_API_BASE_URL", default="https://now.core.api.espn.com"
     ),
     # Request behaviour
     "TIMEOUT": env.float("ESPN_TIMEOUT", default=30.0),

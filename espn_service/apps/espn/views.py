@@ -9,71 +9,22 @@ from rest_framework.response import Response
 
 from apps.espn.filters import EventFilter, TeamFilter
 from apps.espn.models import (
-    AthleteSeasonStats,
     Event,
     Injury,
-    League,
     NewsArticle,
-    Sport,
     Team,
     Transaction,
 )
 from apps.espn.serializers import (
-    AthleteSeasonStatsSerializer,
     EventListSerializer,
     EventSerializer,
     InjurySerializer,
-    LeagueSerializer,
     NewsArticleListSerializer,
     NewsArticleSerializer,
-    SportSerializer,
     TeamListSerializer,
     TeamSerializer,
     TransactionSerializer,
 )
-
-
-class SportViewSet(viewsets.ReadOnlyModelViewSet):
-    """ViewSet for Sport discovery."""
-
-    serializer_class = SportSerializer
-    lookup_field = "slug"
-
-    def get_queryset(self) -> QuerySet[Sport]:
-        return Sport.objects.prefetch_related("leagues").order_by("name")
-
-    @extend_schema(tags=["Discovery"], summary="List sports")
-    def list(self, request: Request, *args, **kwargs) -> Response:
-        return super().list(request, *args, **kwargs)
-
-    @extend_schema(tags=["Discovery"], summary="Get sport details")
-    def retrieve(self, request: Request, *args, **kwargs) -> Response:
-        return super().retrieve(request, *args, **kwargs)
-
-
-class LeagueViewSet(viewsets.ReadOnlyModelViewSet):
-    """ViewSet for League discovery."""
-
-    serializer_class = LeagueSerializer
-
-    def get_queryset(self) -> QuerySet[League]:
-        qs = League.objects.select_related("sport").order_by("sport__name", "name")
-        sport = self.request.query_params.get("sport")
-        if sport:
-            qs = qs.filter(sport__slug__iexact=sport)
-        return qs
-
-    @extend_schema(
-        tags=["Discovery"],
-        summary="List leagues",
-        parameters=[OpenApiParameter("sport", description="Filter by sport slug", type=str)],
-    )
-    def list(self, request: Request, *args, **kwargs) -> Response:
-        return super().list(request, *args, **kwargs)
-
-    @extend_schema(tags=["Discovery"], summary="Get league details")
-    def retrieve(self, request: Request, *args, **kwargs) -> Response:
-        return super().retrieve(request, *args, **kwargs)
 
 
 class TeamViewSet(viewsets.ReadOnlyModelViewSet):
@@ -85,7 +36,11 @@ class TeamViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ["display_name"]
 
     def get_queryset(self) -> QuerySet[Team]:
-        return Team.objects.select_related("league", "league__sport").filter(is_active=True)
+        return Team.objects.select_related("league", "league__sport").filter(
+            is_active=True,
+            league__sport__slug="football",
+            league__slug="nfl",
+        )
 
     def get_serializer_class(self) -> type:
         if self.action == "list":
@@ -94,10 +49,8 @@ class TeamViewSet(viewsets.ReadOnlyModelViewSet):
 
     @extend_schema(
         tags=["Teams"],
-        summary="List teams",
+        summary="List NFL teams",
         parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug", type=str),
             OpenApiParameter("search", description="Search in name/abbreviation/location", type=str),
         ],
     )
@@ -132,7 +85,10 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self) -> QuerySet[Event]:
         return Event.objects.select_related(
             "league", "league__sport", "venue"
-        ).prefetch_related("competitors", "competitors__team")
+        ).prefetch_related("competitors", "competitors__team").filter(
+            league__sport__slug="football",
+            league__slug="nfl",
+        )
 
     def get_serializer_class(self) -> type:
         if self.action == "list":
@@ -141,10 +97,8 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
 
     @extend_schema(
         tags=["Events"],
-        summary="List events",
+        summary="List NFL events",
         parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug", type=str),
             OpenApiParameter("date", description="Filter by date (YYYY-MM-DD)", type=str),
             OpenApiParameter("date_from", description="Filter date >=", type=str),
             OpenApiParameter("date_to", description="Filter date <=", type=str),
@@ -185,15 +139,10 @@ class NewsArticleViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ["-published"]
 
     def get_queryset(self) -> QuerySet[NewsArticle]:
-        qs = NewsArticle.objects.select_related("league", "league__sport")
-
-        sport = self.request.query_params.get("sport")
-        if sport:
-            qs = qs.filter(league__sport__slug__iexact=sport)
-
-        league = self.request.query_params.get("league")
-        if league:
-            qs = qs.filter(league__slug__iexact=league)
+        qs = NewsArticle.objects.select_related("league", "league__sport").filter(
+            league__sport__slug="football",
+            league__slug="nfl",
+        )
 
         date_from = self.request.query_params.get("date_from")
         if date_from:
@@ -208,10 +157,8 @@ class NewsArticleViewSet(viewsets.ReadOnlyModelViewSet):
 
     @extend_schema(
         tags=["News"],
-        summary="List news articles",
+        summary="List NFL news articles",
         parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug", type=str),
             OpenApiParameter("date_from", description="Published on or after (YYYY-MM-DD)", type=str),
             OpenApiParameter("search", description="Search headline/description", type=str),
         ],
@@ -233,15 +180,10 @@ class InjuryViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ["-updated_at"]
 
     def get_queryset(self) -> QuerySet[Injury]:
-        qs = Injury.objects.select_related("league", "league__sport", "team")
-
-        sport = self.request.query_params.get("sport")
-        if sport:
-            qs = qs.filter(league__sport__slug__iexact=sport)
-
-        league = self.request.query_params.get("league")
-        if league:
-            qs = qs.filter(league__slug__iexact=league)
+        qs = Injury.objects.select_related("league", "league__sport", "team").filter(
+            league__sport__slug="football",
+            league__slug="nfl",
+        )
 
         status_param = self.request.query_params.get("status")
         if status_param:
@@ -255,10 +197,8 @@ class InjuryViewSet(viewsets.ReadOnlyModelViewSet):
 
     @extend_schema(
         tags=["Injuries"],
-        summary="List injury reports",
+        summary="List NFL injury reports",
         parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug (e.g., 'nfl')", type=str),
             OpenApiParameter(
                 "status",
                 description="Filter by status (out, questionable, doubtful, ir, day_to_day)",
@@ -285,15 +225,10 @@ class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ["-date"]
 
     def get_queryset(self) -> QuerySet[Transaction]:
-        qs = Transaction.objects.select_related("league", "league__sport", "team")
-
-        sport = self.request.query_params.get("sport")
-        if sport:
-            qs = qs.filter(league__sport__slug__iexact=sport)
-
-        league = self.request.query_params.get("league")
-        if league:
-            qs = qs.filter(league__slug__iexact=league)
+        qs = Transaction.objects.select_related("league", "league__sport", "team").filter(
+            league__sport__slug="football",
+            league__slug="nfl",
+        )
 
         date_from = self.request.query_params.get("date_from")
         if date_from:
@@ -303,10 +238,8 @@ class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
 
     @extend_schema(
         tags=["Transactions"],
-        summary="List transactions",
+        summary="List NFL transactions",
         parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug", type=str),
             OpenApiParameter("date_from", description="Transactions on or after (YYYY-MM-DD)", type=str),
             OpenApiParameter("search", description="Search description / athlete name / type", type=str),
         ],
@@ -315,53 +248,5 @@ class TransactionViewSet(viewsets.ReadOnlyModelViewSet):
         return super().list(request, *args, **kwargs)
 
     @extend_schema(tags=["Transactions"], summary="Get transaction detail")
-    def retrieve(self, request: Request, *args, **kwargs) -> Response:
-        return super().retrieve(request, *args, **kwargs)
-
-
-class AthleteSeasonStatsViewSet(viewsets.ReadOnlyModelViewSet):
-    """ViewSet for stored athlete season stats."""
-
-    serializer_class = AthleteSeasonStatsSerializer
-    search_fields = ["athlete_name"]
-    ordering_fields = ["season_year", "athlete_name"]
-    ordering = ["-season_year"]
-
-    def get_queryset(self) -> QuerySet[AthleteSeasonStats]:
-        qs = AthleteSeasonStats.objects.select_related("league", "league__sport", "athlete")
-
-        sport = self.request.query_params.get("sport")
-        if sport:
-            qs = qs.filter(league__sport__slug__iexact=sport)
-
-        league = self.request.query_params.get("league")
-        if league:
-            qs = qs.filter(league__slug__iexact=league)
-
-        season = self.request.query_params.get("season")
-        if season and season.isdigit():
-            qs = qs.filter(season_year=int(season))
-
-        athlete_id = self.request.query_params.get("athlete_espn_id")
-        if athlete_id:
-            qs = qs.filter(athlete_espn_id=athlete_id)
-
-        return qs
-
-    @extend_schema(
-        tags=["Athlete Stats"],
-        summary="List athlete season stats",
-        parameters=[
-            OpenApiParameter("sport", description="Filter by sport slug", type=str),
-            OpenApiParameter("league", description="Filter by league slug", type=str),
-            OpenApiParameter("season", description="Filter by season year (e.g., 2024)", type=int),
-            OpenApiParameter("athlete_espn_id", description="Filter by ESPN athlete ID", type=str),
-            OpenApiParameter("search", description="Search athlete name", type=str),
-        ],
-    )
-    def list(self, request: Request, *args, **kwargs) -> Response:
-        return super().list(request, *args, **kwargs)
-
-    @extend_schema(tags=["Athlete Stats"], summary="Get athlete season stats detail")
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         return super().retrieve(request, *args, **kwargs)

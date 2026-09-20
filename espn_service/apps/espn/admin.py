@@ -6,8 +6,6 @@ from django.http import HttpRequest
 from django.utils.html import format_html
 
 from apps.espn.models import (
-    Athlete,
-    AthleteSeasonStats,
     Competitor,
     Event,
     Injury,
@@ -106,24 +104,6 @@ class CompetitorAdmin(admin.ModelAdmin):
         return super().get_queryset(request).select_related("team", "event")
 
 
-@admin.register(Athlete)
-class AthleteAdmin(admin.ModelAdmin):
-    list_display = ["display_name", "team", "position", "jersey", "is_active", "espn_id"]
-    list_filter = ["is_active", "team__league", "position"]
-    search_fields = ["full_name", "display_name", "espn_id"]
-    readonly_fields = ["created_at", "updated_at", "headshot_preview"]
-
-    def headshot_preview(self, obj: Athlete) -> str:
-        if obj.headshot:
-            return format_html(
-                '<img src="{0}" style="max-height: 100px; max-width: 100px;" />',
-                obj.headshot,
-            )
-        return "-"
-
-    headshot_preview.short_description = "Headshot"  # type: ignore[attr-defined]
-
-
 # ---------------------------------------------------------------------------
 # New model admins — added in audit expansion
 # ---------------------------------------------------------------------------
@@ -194,25 +174,3 @@ class TransactionAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request: HttpRequest) -> QuerySet:
         return super().get_queryset(request).select_related("league", "league__sport", "team")
-
-
-@admin.register(AthleteSeasonStats)
-class AthleteSeasonStatsAdmin(admin.ModelAdmin):
-    """Admin for AthleteSeasonStats model."""
-
-    list_display = [
-        "athlete_name",
-        "athlete_espn_id",
-        "league",
-        "season_year",
-        "season_type",
-        "updated_at",
-    ]
-    list_filter = ["season_year", "season_type", "league__sport", "league"]
-    search_fields = ["athlete_name", "athlete_espn_id"]
-    readonly_fields = ["created_at", "updated_at"]
-
-    def get_queryset(self, request: HttpRequest) -> QuerySet:
-        return (
-            super().get_queryset(request).select_related("league", "league__sport", "athlete")
-        )
