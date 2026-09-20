@@ -1,45 +1,26 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# Native extensions
 *.so
 
-# Distribution / packaging
+# Packaging
 .Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
+# Test and coverage
 htmlcov/
-.tox/
-.nox/
 .coverage
 .coverage.*
 .cache
-nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
@@ -50,7 +31,7 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff
+# Django
 *.log
 local_settings.py
 db.sqlite3
@@ -58,42 +39,16 @@ db.sqlite3-journal
 staticfiles/
 media/
 
-# Flask stuff
-instance/
-.webassets-cache
-
-# Scrapy stuff
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
 # Jupyter Notebook
 .ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
 
 # pyenv
 .python-version
 
-# pipenv
-Pipfile.lock
-
-# PEP 582
-__pypackages__/
-
-# Celery stuff
+# Celery
 celerybeat-schedule
 celerybeat.pid
 celerybeat-schedule.db
-
-# SageMath parsed files
-*.sage.py
 
 # Environments
 .env
@@ -103,26 +58,9 @@ celerybeat-schedule.db
 env/
 venv/
 ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
 
 # mypy
 .mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
 
 # IDE
 .idea/
@@ -142,14 +80,6 @@ dmypy.json
 ehthumbs.db
 Thumbs.db
 
-# Docker
-.docker/
-
-# Node (if any frontend)
-node_modules/
-npm-debug.log
-yarn-error.log
-
 # Ruff
 .ruff_cache/
 
@@ -158,7 +88,6 @@ dump.rdb
 
 # Local development
 *.local
-.localstack/
 
 # Secrets (never commit these)
 *.pem
@@ -166,14 +95,3 @@ dump.rdb
 secrets.json
 credentials.json
 service-account.json
-
-# Backup files
-*.bak
-*.backup
-*.old
-
-# Temporary files
-*.tmp
-*.temp
-.temp/
-tmp/
