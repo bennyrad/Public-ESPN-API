@@ -13,7 +13,7 @@ class TestSportModel:
 
     def test_sport_str(self, sport: Sport):
         """Test Sport string representation."""
-        assert str(sport) == "Basketball"
+        assert str(sport) == "Football"
 
     def test_sport_ordering(self, db):
         """Test Sport ordering by name."""
@@ -31,15 +31,15 @@ class TestLeagueModel:
 
     def test_league_str(self, league: League):
         """Test League string representation."""
-        assert str(league) == "NBA (Basketball)"
+        assert str(league) == "NFL (Football)"
 
     def test_league_unique_constraint(self, sport: Sport, league: League):
         """Test League unique constraint on sport+slug."""
         with pytest.raises(Exception):  # IntegrityError
             League.objects.create(
                 sport=sport,
-                slug="nba",
-                name="Duplicate NBA",
+                slug="nfl",
+                name="Duplicate NFL",
             )
 
 
@@ -49,7 +49,7 @@ class TestTeamModel:
 
     def test_team_str(self, team: Team):
         """Test Team string representation."""
-        assert str(team) == "Test Team (NBA)"
+        assert str(team) == "Test Team (NFL)"
 
     def test_team_primary_logo(self, team: Team):
         """Test Team primary_logo property."""

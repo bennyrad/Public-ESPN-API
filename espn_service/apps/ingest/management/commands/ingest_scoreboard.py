@@ -16,12 +16,12 @@ class Command(BaseCommand):
         parser.add_argument(
             "sport",
             type=str,
-            help="Sport slug (e.g., basketball, football)",
+            help="Sport slug (e.g., football, football)",
         )
         parser.add_argument(
             "league",
             type=str,
-            help="League slug (e.g., nba, nfl)",
+            help="League slug (e.g., nfl, nfl)",
         )
         parser.add_argument(
             "--date",

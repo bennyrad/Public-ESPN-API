@@ -17,7 +17,7 @@ def api_client() -> APIClient:
 @pytest.fixture
 def sport(db) -> Sport:
     """Create a test sport."""
-    return Sport.objects.create(slug="basketball", name="Basketball")
+    return Sport.objects.create(slug="football", name="Football")
 
 
 @pytest.fixture
@@ -25,9 +25,9 @@ def league(db, sport: Sport) -> League:
     """Create a test league."""
     return League.objects.create(
         sport=sport,
-        slug="nba",
-        name="NBA",
-        abbreviation="NBA",
+        slug="nfl",
+        name="NFL",
+        abbreviation="NFL",
     )
 
 
@@ -141,13 +141,13 @@ def mock_teams_response() -> dict:
         "sports": [
             {
                 "id": "40",
-                "name": "Basketball",
-                "slug": "basketball",
+                "name": "Football",
+                "slug": "football",
                 "leagues": [
                     {
                         "id": "46",
-                        "name": "NBA",
-                        "slug": "nba",
+                        "name": "NFL",
+                        "slug": "nfl",
                         "teams": [
                             {
                                 "team": {
@@ -166,7 +166,7 @@ def mock_teams_response() -> dict:
                                     "isAllStar": False,
                                     "logos": [
                                         {
-                                            "href": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
+                                            "href": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
                                             "rel": ["full", "default"],
                                             "width": 500,
                                             "height": 500,
@@ -209,8 +209,8 @@ def mock_scoreboard_response() -> dict:
         "leagues": [
             {
                 "id": "46",
-                "name": "NBA",
-                "abbreviation": "NBA",
+                "name": "NFL",
+                "abbreviation": "NFL",
             }
         ],
         "events": [

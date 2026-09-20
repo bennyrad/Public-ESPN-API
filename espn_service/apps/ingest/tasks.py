@@ -12,67 +12,11 @@ from celery import shared_task
 logger = structlog.get_logger(__name__)
 
 # ---------------------------------------------------------------------------
-# League configuration — keep in sync with ingest_all_teams.py
+# League configuration — NFL-only for this project scope.
 # ---------------------------------------------------------------------------
 
 ALL_LEAGUES_CONFIG: list[tuple[str, str]] = [
-    # Football
     ("football", "nfl"),
-    ("football", "college-football"),
-    ("football", "cfl"),
-    ("football", "ufl"),
-    ("football", "xfl"),
-    # Basketball
-    ("basketball", "nba"),
-    ("basketball", "wnba"),
-    ("basketball", "nba-development"),
-    ("basketball", "mens-college-basketball"),
-    ("basketball", "womens-college-basketball"),
-    ("basketball", "nbl"),
-    # Baseball
-    ("baseball", "mlb"),
-    ("baseball", "college-baseball"),
-    # Hockey
-    ("hockey", "nhl"),
-    ("hockey", "mens-college-hockey"),
-    ("hockey", "womens-college-hockey"),
-    # Soccer — major leagues only for Celery (performance)
-    ("soccer", "eng.1"),
-    ("soccer", "esp.1"),
-    ("soccer", "ger.1"),
-    ("soccer", "ita.1"),
-    ("soccer", "fra.1"),
-    ("soccer", "usa.1"),
-    ("soccer", "eng.2"),
-    ("soccer", "uefa.champions"),
-    # Golf
-    ("golf", "pga"),
-    ("golf", "lpga"),
-    ("golf", "eur"),
-    ("golf", "liv"),
-    # Racing
-    ("racing", "f1"),
-    ("racing", "irl"),
-    ("racing", "nascar-premier"),
-    ("racing", "nascar-secondary"),
-    ("racing", "nascar-truck"),
-    # Tennis
-    ("tennis", "atp"),
-    ("tennis", "wta"),
-    # MMA
-    ("mma", "ufc"),
-    ("mma", "bellator"),
-    # Rugby
-    ("rugby", "premiership"),
-    ("rugby", "rugby-union-super-rugby"),
-    ("rugby", "internationals"),
-    # Rugby League
-    ("rugby-league", "nrl"),
-    # Lacrosse
-    ("lacrosse", "pll"),
-    ("lacrosse", "nll"),
-    ("lacrosse", "mens-college-lacrosse"),
-    ("lacrosse", "womens-college-lacrosse"),
 ]
 
 

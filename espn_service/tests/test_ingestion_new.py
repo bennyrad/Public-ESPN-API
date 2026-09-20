@@ -29,7 +29,7 @@ from apps.ingest.services import (
 # ---------------------------------------------------------------------------
 
 
-def _make_league(sport_slug: str = "basketball", league_slug: str = "nba") -> tuple[Sport, League]:
+def _make_league(sport_slug: str = "football", league_slug: str = "nfl") -> tuple[Sport, League]:
     sport, _ = Sport.objects.get_or_create(slug=sport_slug, defaults={"name": sport_slug.title()})
     league, _ = League.objects.get_or_create(
         sport=sport,
@@ -56,7 +56,7 @@ class TestNewsIngestionService(TestCase):
     def setUp(self) -> None:
         self.client_mock = MagicMock()
         self.service = NewsIngestionService(client=self.client_mock)
-        _, self.league = _make_league("basketball", "nba")
+        _, self.league = _make_league("football", "nfl")
 
     def test_ingest_creates_new_articles(self) -> None:
         """Two new articles should be created."""
@@ -70,14 +70,14 @@ class TestNewsIngestionService(TestCase):
                 },
                 {
                     "dataSourceIdentifier": "art-002",
-                    "headline": "NBA All-Star rosters announced",
+                    "headline": "NFL All-Star rosters announced",
                     "published": "2024-01-16T18:00:00Z",
                     "type": "Story",
                 },
             ]
         })
 
-        result = self.service.ingest_news("basketball", "nba")
+        result = self.service.ingest_news("football", "nfl")
 
         assert isinstance(result, IngestionResult)
         assert result.created == 2
@@ -100,7 +100,7 @@ class TestNewsIngestionService(TestCase):
 
         NewsArticle.objects.create(espn_id="art-001", headline="Old headline")
 
-        result = self.service.ingest_news("basketball", "nba")
+        result = self.service.ingest_news("football", "nfl")
 
         assert result.created == 0
         assert result.updated == 1
@@ -108,7 +108,7 @@ class TestNewsIngestionService(TestCase):
 
     def test_ingest_empty_response_returns_zero(self) -> None:
         self.client_mock.get_news.return_value = _make_espn_response({"articles": []})
-        result = self.service.ingest_news("basketball", "nba")
+        result = self.service.ingest_news("football", "nfl")
         assert result.created == 0
         assert result.updated == 0
         assert result.errors == 0
@@ -117,7 +117,7 @@ class TestNewsIngestionService(TestCase):
         self.client_mock.get_news.return_value = _make_espn_response({
             "articles": [{"headline": "No ID article"}]
         })
-        result = self.service.ingest_news("basketball", "nba")
+        result = self.service.ingest_news("football", "nfl")
         assert result.errors == 1
         assert NewsArticle.objects.count() == 0
 
@@ -207,7 +207,7 @@ class TestTransactionIngestionService(TestCase):
     def setUp(self) -> None:
         self.client_mock = MagicMock()
         self.service = TransactionIngestionService(client=self.client_mock)
-        _, self.league = _make_league("basketball", "nba")
+        _, self.league = _make_league("football", "nfl")
 
     def test_ingest_creates_transactions(self) -> None:
         self.client_mock.get_league_transactions.return_value = _make_espn_response({
@@ -223,7 +223,7 @@ class TestTransactionIngestionService(TestCase):
             ]
         })
 
-        result = self.service.ingest_transactions("basketball", "nba")
+        result = self.service.ingest_transactions("football", "nfl")
 
         assert result.created == 1
         txn = Transaction.objects.get(espn_id="txn-101")
@@ -246,7 +246,7 @@ class TestTransactionIngestionService(TestCase):
             ]
         })
 
-        result = self.service.ingest_transactions("basketball", "nba")
+        result = self.service.ingest_transactions("football", "nfl")
 
         assert result.updated == 1
         assert Transaction.objects.get(espn_id="txn-101").description == "Updated description"
@@ -268,9 +268,9 @@ class TestNewCeleryTasks(TestCase):
         mock_instance.ingest_news.return_value = IngestionResult(created=5, updated=0, errors=0)
 
         # bind=True tasks must be tested via .run() to skip the self/broker machinery
-        result = refresh_news_task.run("basketball", "nba")
+        result = refresh_news_task.run("football", "nfl")
 
-        mock_instance.ingest_news.assert_called_once_with("basketball", "nba", limit=50)
+        mock_instance.ingest_news.assert_called_once_with("football", "nfl", limit=50)
         assert result["created"] == 5
 
     @patch("apps.ingest.services.InjuryIngestionService")
@@ -292,9 +292,9 @@ class TestNewCeleryTasks(TestCase):
         mock_instance = MockService.return_value
         mock_instance.ingest_transactions.return_value = IngestionResult(created=8, updated=2, errors=0)
 
-        result = refresh_transactions_task.run("basketball", "nba")
+        result = refresh_transactions_task.run("football", "nfl")
 
-        mock_instance.ingest_transactions.assert_called_once_with("basketball", "nba")
+        mock_instance.ingest_transactions.assert_called_once_with("football", "nfl")
         assert result["created"] == 8
 
 
@@ -314,16 +314,16 @@ class TestNewsArticleAPI:
         assert response.data["count"] == 0
 
     def test_list_news_filter_by_league(self) -> None:
-        sport, league = _make_league("basketball", "nba")
+        sport, league = _make_league("football", "nfl")
         sport2, league2 = _make_league("football", "nfl")
-        NewsArticle.objects.create(espn_id="a1", headline="NBA news", league=league)
+        NewsArticle.objects.create(espn_id="a1", headline="NFL news", league=league)
         NewsArticle.objects.create(espn_id="a2", headline="NFL news", league=league2)
 
         client = APIClient()
-        response = client.get("/api/v1/news/?league=nba")
+        response = client.get("/api/v1/news/?league=nfl")
         assert response.status_code == status.HTTP_200_OK
         assert response.data["count"] == 1
-        assert response.data["results"][0]["headline"] == "NBA news"
+        assert response.data["results"][0]["headline"] == "NFL news"
 
 
 @pytest.mark.django_db
@@ -365,13 +365,13 @@ class TestIngestNewsEndpoint:
         client = APIClient()
         response = client.post(
             "/api/v1/ingest/news/",
-            {"sport": "basketball", "league": "nba"},
+            {"sport": "football", "league": "nfl"},
             format="json",
         )
 
         assert response.status_code == status.HTTP_200_OK
         assert response.data["created"] == 3
-        mock_instance.ingest_news.assert_called_once_with("basketball", "nba", limit=50)
+        mock_instance.ingest_news.assert_called_once_with("football", "nfl", limit=50)
 
 
 @pytest.mark.django_db

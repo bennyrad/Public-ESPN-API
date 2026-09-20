@@ -22,12 +22,12 @@ class TestTeamSubResources:
             ],
         }
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/9/injuries",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/9/injuries",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_team_injuries("basketball", "nba", "9")
+            response = client.get_team_injuries("football", "nfl", "9")
 
         assert response.is_success
         assert response.data["team"]["abbreviation"] == "GSW"
@@ -119,13 +119,13 @@ class TestGameSituationEndpoints:
             "awayTeam": {"gameProjection": "36.6"},
         }
         url = (
-            "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba"
+            "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl"
             "/events/401765432/competitions/401765432/predictor"
         )
         httpx_mock.add_response(url=url, json=mock_response)
 
         with ESPNClient() as client:
-            response = client.get_game_predictor("basketball", "nba", "401765432")
+            response = client.get_game_predictor("football", "nfl", "401765432")
 
         assert response.is_success
         assert float(response.data["homeTeam"]["gameProjection"]) > 50
@@ -142,13 +142,13 @@ class TestGameSituationEndpoints:
             ],
         }
         url = (
-            "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba"
+            "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl"
             "/events/401765432/competitions/401765432/broadcasts"
         )
         httpx_mock.add_response(url=url, json=mock_response)
 
         with ESPNClient() as client:
-            response = client.get_game_broadcasts("basketball", "nba", "401765432")
+            response = client.get_game_broadcasts("football", "nfl", "401765432")
 
         assert response.is_success
         assert response.data["items"][0]["media"]["shortName"] == "ESPN"
@@ -159,13 +159,13 @@ class TestGameSituationEndpoints:
         """Test that competition_id defaults to event_id when not provided."""
         mock_response = {"count": 0, "items": []}
         url = (
-            "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba"
+            "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl"
             "/events/99999/competitions/99999/broadcasts"
         )
         httpx_mock.add_response(url=url, json=mock_response)
 
         with ESPNClient() as client:
-            response = client.get_game_broadcasts("basketball", "nba", "99999")
+            response = client.get_game_broadcasts("football", "nfl", "99999")
 
         assert response.is_success
 
@@ -187,12 +187,12 @@ class TestCoachesEndpoints:
             ],
         }
         httpx_mock.add_response(
-            url="https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/coaches?limit=100",
+            url="https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/coaches?limit=100",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_coaches("basketball", "nba")
+            response = client.get_coaches("football", "nfl")
 
         assert response.is_success
         assert response.data["count"] == 30
@@ -221,12 +221,12 @@ class TestCoachesEndpoints:
             "record": {"overall": {"wins": 548, "losses": 232}},
         }
         httpx_mock.add_response(
-            url="https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/coaches/6010",
+            url="https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/coaches/6010",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_coach("basketball", "nba", "6010")
+            response = client.get_coach("football", "nfl", "6010")
 
         assert response.is_success
         assert response.data["id"] == "6010"
@@ -310,14 +310,14 @@ class TestPowerIndexEndpoint:
             "items": [{"team": {"id": "99"}, "value": 18.4}],
         }
         url = (
-            "https://sports.core.api.espn.com/v2/sports/basketball/leagues"
-            "/mens-college-basketball/seasons/2025/powerindex"
+            "https://sports.core.api.espn.com/v2/sports/football/leagues"
+            "/mens-college-football/seasons/2025/powerindex"
         )
         httpx_mock.add_response(url=url, json=mock_response)
 
         with ESPNClient() as client:
             response = client.get_power_index(
-                "basketball", "mens-college-basketball", 2025
+                "football", "mens-college-football", 2025
             )
 
         assert response.is_success
@@ -330,14 +330,14 @@ class TestPowerIndexEndpoint:
             "value": 21.7,
         }
         url = (
-            "https://sports.core.api.espn.com/v2/sports/basketball/leagues"
-            "/mens-college-basketball/seasons/2025/powerindex/150"
+            "https://sports.core.api.espn.com/v2/sports/football/leagues"
+            "/mens-college-football/seasons/2025/powerindex/150"
         )
         httpx_mock.add_response(url=url, json=mock_response)
 
         with ESPNClient() as client:
             response = client.get_power_index(
-                "basketball", "mens-college-basketball", 2025, team_id="150"
+                "football", "mens-college-football", 2025, team_id="150"
             )
 
         assert response.is_success

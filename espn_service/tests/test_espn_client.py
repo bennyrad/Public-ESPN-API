@@ -39,18 +39,18 @@ class TestESPNClient:
         client = ESPNClient()
         url = client._build_url(
             ESPNEndpointDomain.SITE,
-            "/apis/site/v2/sports/basketball/nba/scoreboard",
+            "/apis/site/v2/sports/football/nfl/scoreboard",
         )
-        assert url == "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+        assert url == "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
     def test_build_url_core_domain(self):
         """Test URL building for core domain."""
         client = ESPNClient()
         url = client._build_url(
             ESPNEndpointDomain.CORE,
-            "/v2/sports/basketball/leagues/nba",
+            "/v2/sports/football/leagues/nfl",
         )
-        assert url == "https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba"
+        assert url == "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl"
 
     def test_context_manager(self):
         """Test client can be used as context manager."""
@@ -65,12 +65,12 @@ class TestESPNClient:
             ]
         }
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20241215",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20241215",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_scoreboard("basketball", "nba", "20241215")
+            response = client.get_scoreboard("football", "nfl", "20241215")
 
         assert response.is_success
         assert response.data == mock_response
@@ -81,14 +81,14 @@ class TestESPNClient:
 
         mock_response = {"events": []}
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=20241215",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20241215",
             json=mock_response,
         )
 
         with ESPNClient() as client:
             response = client.get_scoreboard(
-                "basketball",
-                "nba",
+                "football",
+                "nfl",
                 datetime(2024, 12, 15),
             )
 
@@ -108,12 +108,12 @@ class TestESPNClient:
             ]
         }
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams?limit=100",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams?limit=100",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_teams("basketball", "nba")
+            response = client.get_teams("football", "nfl")
 
         assert response.is_success
         assert response.data == mock_response
@@ -122,12 +122,12 @@ class TestESPNClient:
         """Test successful single team fetch."""
         mock_response = {"team": {"id": "1", "name": "Atlanta Hawks"}}
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/1",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/1",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_team("basketball", "nba", "1")
+            response = client.get_team("football", "nfl", "1")
 
         assert response.is_success
         assert response.data["team"]["id"] == "1"
@@ -135,44 +135,44 @@ class TestESPNClient:
     def test_handle_404_response(self, httpx_mock: HTTPXMock):
         """Test 404 response raises ESPNNotFoundError."""
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/999",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/999",
             status_code=404,
         )
 
         with ESPNClient() as client, pytest.raises(ESPNNotFoundError):
-            client.get_team("basketball", "nba", "999")
+            client.get_team("football", "nfl", "999")
 
     def test_handle_429_response(self, httpx_mock: HTTPXMock):
         """Test 429 response raises ESPNRateLimitError."""
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
             status_code=429,
         )
 
         with ESPNClient() as client, pytest.raises(ESPNRateLimitError):
-            client.get_scoreboard("basketball", "nba")
+            client.get_scoreboard("football", "nfl")
 
     def test_handle_500_response_with_retry(self, httpx_mock: HTTPXMock):
         """Test 500 response triggers retry and eventually raises error."""
         # Add response for the single retry attempt (max_retries=1 in test settings)
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
             status_code=500,
         )
 
         with ESPNClient() as client, pytest.raises(ESPNClientError):
-            client.get_scoreboard("basketball", "nba")
+            client.get_scoreboard("football", "nfl")
 
     def test_handle_invalid_json(self, httpx_mock: HTTPXMock):
         """Test invalid JSON response raises ESPNClientError."""
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
             content=b"not valid json",
             headers={"content-type": "application/json"},
         )
 
         with ESPNClient() as client, pytest.raises(ESPNClientError) as exc_info:
-            client.get_scoreboard("basketball", "nba")
+            client.get_scoreboard("football", "nfl")
 
         assert "Failed to parse" in str(exc_info.value)
 
@@ -180,28 +180,28 @@ class TestESPNClient:
         """Test successful event fetch."""
         mock_response = {"header": {"id": "401584666"}}
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401584666",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401584666",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_event("basketball", "nba", "401584666")
+            response = client.get_event("football", "nfl", "401584666")
 
         assert response.is_success
 
     def test_get_league_info_success(self, httpx_mock: HTTPXMock):
         """Test successful league info fetch from core API."""
-        mock_response = {"id": "46", "name": "NBA"}
+        mock_response = {"id": "46", "name": "NFL"}
         httpx_mock.add_response(
-            url="https://sports.core.api.espn.com/v2/sports/basketball/leagues/nba",
+            url="https://sports.core.api.espn.com/v2/sports/football/leagues/nfl",
             json=mock_response,
         )
 
         with ESPNClient() as client:
-            response = client.get_league_info("basketball", "nba")
+            response = client.get_league_info("football", "nfl")
 
         assert response.is_success
-        assert response.data["name"] == "NBA"
+        assert response.data["name"] == "NFL"
 
 
 class TestESPNClientRetry:
@@ -212,11 +212,11 @@ class TestESPNClientRetry:
         # First request raises error, second succeeds
         httpx_mock.add_exception(
             httpx.ConnectError("Connection refused"),
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
         )
 
         with ESPNClient() as client, pytest.raises(ESPNClientError) as exc_info:
-            client.get_scoreboard("basketball", "nba")
+            client.get_scoreboard("football", "nfl")
 
         assert "connection error" in str(exc_info.value).lower()
 
@@ -234,7 +234,7 @@ class TestNewDomainRouting:
     def test_web_v3_domain_url(self):
         url = self.client._build_url(
             ESPNEndpointDomain.WEB_V3,
-            "/apis/common/v3/sports/basketball/nba/athletes/1/stats",
+            "/apis/common/v3/sports/football/nfl/athletes/1/stats",
         )
         assert url.startswith("https://site.web.api.espn.com")
 
@@ -257,11 +257,11 @@ class TestGetStandingsDomainFix:
     def test_standings_path_uses_apis_v2(self, httpx_mock: HTTPXMock):
         """Standings must resolve to /apis/v2/ — not /apis/site/v2/."""
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/v2/sports/basketball/nba/standings",
+            url="https://site.api.espn.com/apis/v2/sports/football/nfl/standings",
             json={"children": [], "seasons": {}},
         )
         with ESPNClient() as client:
-            resp = client.get_standings("basketball", "nba")
+            resp = client.get_standings("football", "nfl")
         assert resp.is_success
 
     def test_standings_path_does_not_use_site_v2(self):
@@ -288,11 +288,11 @@ class TestLeagueWideEndpoints:
 
     def test_get_league_injuries(self, httpx_mock: HTTPXMock):
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/injuries",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
             json={"items": []},
         )
         with ESPNClient() as client:
-            resp = client.get_league_injuries("basketball", "nba")
+            resp = client.get_league_injuries("football", "nfl")
         assert resp.is_success
 
     def test_get_league_transactions(self, httpx_mock: HTTPXMock):
@@ -306,11 +306,11 @@ class TestLeagueWideEndpoints:
 
     def test_get_groups(self, httpx_mock: HTTPXMock):
         httpx_mock.add_response(
-            url="https://site.api.espn.com/apis/site/v2/sports/basketball/nba/groups",
+            url="https://site.api.espn.com/apis/site/v2/sports/football/nfl/groups",
             json={"groups": []},
         )
         with ESPNClient() as client:
-            resp = client.get_groups("basketball", "nba")
+            resp = client.get_groups("football", "nfl")
         assert resp.is_success
 
 
@@ -322,11 +322,11 @@ class TestAthleteV3Endpoints:
 
     def test_get_athlete_overview_uses_web_domain(self, httpx_mock: HTTPXMock):
         httpx_mock.add_response(
-            url="https://site.web.api.espn.com/apis/common/v3/sports/basketball/nba/athletes/1234/overview",
+            url="https://site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/1234/overview",
             json={"athlete": {}, "statistics": []},
         )
         with ESPNClient() as client:
-            resp = client.get_athlete_overview("basketball", "nba", 1234)
+            resp = client.get_athlete_overview("football", "nfl", 1234)
         assert resp.is_success
 
     def test_get_athlete_stats_uses_web_domain(self, httpx_mock: HTTPXMock):
@@ -383,20 +383,20 @@ class TestCDNEndpoints:
 
     def test_get_cdn_game_boxscore_view(self, httpx_mock: HTTPXMock):
         httpx_mock.add_response(
-            url="https://cdn.espn.com/core/nba/boxscore?xhr=1&gameId=401584666",
+            url="https://cdn.espn.com/core/nfl/boxscore?xhr=1&gameId=401584666",
             json={"gamepackageJSON": {}},
         )
         with ESPNClient() as client:
-            resp = client.get_cdn_game("nba", "401584666", view="boxscore")
+            resp = client.get_cdn_game("nfl", "401584666", view="boxscore")
         assert resp.is_success
 
     def test_get_cdn_scoreboard(self, httpx_mock: HTTPXMock):
         httpx_mock.add_response(
-            url="https://cdn.espn.com/core/nba/scoreboard?xhr=1",
+            url="https://cdn.espn.com/core/nfl/scoreboard?xhr=1",
             json={"events": []},
         )
         with ESPNClient() as client:
-            resp = client.get_cdn_scoreboard("nba")
+            resp = client.get_cdn_scoreboard("nfl")
         assert resp.is_success
 
 

@@ -37,15 +37,15 @@ class TestIngestAllTeamsCommand:
         mock_svc.return_value.ingest_teams.assert_not_called()
         assert "[DRY RUN]" in output
         # Spot-check a known league appears
-        assert "basketball/nba" in output or "football/nfl" in output
+        assert "football/nfl" in output
 
     def test_dry_run_with_sport_filter(self):
         """Dry run with --sport should list only that sport's leagues."""
         with patch("apps.ingest.services.TeamIngestionService"):
-            output = self._call("--dry-run", "--sport", "basketball")
+            output = self._call("--dry-run", "--sport", "football")
 
-        assert "basketball" in output
-        assert "football" not in output
+        assert "football" in output
+        assert "nfl" in output
 
     def test_sport_filter_invalid_raises(self):
         """Unknown --sport should raise CommandError."""
@@ -60,20 +60,20 @@ class TestIngestAllTeamsCommand:
             "apps.ingest.management.commands.ingest_all_teams.TeamIngestionService"
         ) as mock_cls:
             mock_cls.return_value.ingest_teams.return_value = mock_result
-            output = self._call("--sport", "basketball")
+            output = self._call("--sport", "football")
 
         assert "Done" in output
-        # Should have ingested all basketball leagues
+        # Should have ingested all football leagues
         service = mock_cls.return_value
         assert service.ingest_teams.call_count >= 1
-        # All calls should be for basketball
+        # All calls should be for football
         for call_args in service.ingest_teams.call_args_list:
-            assert call_args[0][0] == "basketball"
+            assert call_args[0][0] == "football"
 
     def test_continue_on_error_default(self):
         """Should continue processing remaining leagues on failure."""
         def side_effect(sport, league):
-            if league == "nba":
+            if league == "nfl":
                 raise RuntimeError("API timeout")
             return self._make_result()
 
@@ -82,7 +82,7 @@ class TestIngestAllTeamsCommand:
         ) as mock_cls:
             mock_cls.return_value.ingest_teams.side_effect = side_effect
             # Should not raise — default is continue-on-error
-            output = self._call("--sport", "basketball")
+            output = self._call("--sport", "football")
 
         assert "✗" in output  # error marker in output
         assert "Done" in output  # still completes
@@ -98,7 +98,7 @@ class TestIngestAllTeamsCommand:
                 out = StringIO()
                 call_command(
                     "ingest_all_teams",
-                    "--sport", "basketball",
+                    "--sport", "football",
                     "--continue-on-error",
                     False,
                     stdout=out,

@@ -21,32 +21,32 @@ class TestGetOrCreateSportAndLeague:
 
     def test_creates_new_sport_and_league(self):
         """Test creating new sport and league."""
-        sport, league = get_or_create_sport_and_league("basketball", "nba")
+        sport, league = get_or_create_sport_and_league("football", "nfl")
 
-        assert sport.slug == "basketball"
-        assert sport.name == "Basketball"
-        assert league.slug == "nba"
+        assert sport.slug == "football"
+        assert sport.name == "Football"
+        assert league.slug == "nfl"
         # league.name stores the full official name from LEAGUE_INFO
-        assert league.name == "National Basketball Association"
+        assert league.name == "National Football League"
         # league.abbreviation stores the short form
-        assert league.abbreviation == "NBA"
+        assert league.abbreviation == "NFL"
         assert league.sport == sport
 
     def test_reuses_existing_sport_and_league(self):
         """Test reusing existing sport and league."""
-        sport1, league1 = get_or_create_sport_and_league("basketball", "nba")
-        sport2, league2 = get_or_create_sport_and_league("basketball", "nba")
+        sport1, league1 = get_or_create_sport_and_league("football", "nfl")
+        sport2, league2 = get_or_create_sport_and_league("football", "nfl")
 
         assert sport1.id == sport2.id
         assert league1.id == league2.id
 
     def test_creates_different_leagues_for_same_sport(self):
         """Test creating different leagues for same sport."""
-        _, nba = get_or_create_sport_and_league("basketball", "nba")
-        _, wnba = get_or_create_sport_and_league("basketball", "wnba")
+        _, nfl = get_or_create_sport_and_league("football", "nfl")
+        _, custom = get_or_create_sport_and_league("football", "custom")
 
-        assert nba.sport == wnba.sport
-        assert nba.id != wnba.id
+        assert nfl.sport == custom.sport
+        assert nfl.id != custom.id
 
 
 @pytest.mark.django_db
@@ -63,7 +63,7 @@ class TestTeamIngestionService:
         )
 
         service = TeamIngestionService(client=mock_client)
-        result = service.ingest_teams("basketball", "nba")
+        result = service.ingest_teams("football", "nfl")
 
         assert result.created == 2
         assert result.updated == 0
@@ -78,9 +78,9 @@ class TestTeamIngestionService:
     def test_ingest_teams_updates_existing(self, mock_teams_response):
         """Test team ingestion updates existing records."""
         # Create sport and league first
-        sport = Sport.objects.create(slug="basketball", name="Basketball")
+        sport = Sport.objects.create(slug="football", name="Football")
         league = League.objects.create(
-            sport=sport, slug="nba", name="NBA", abbreviation="NBA"
+            sport=sport, slug="nfl", name="NFL", abbreviation="NFL"
         )
 
         # Create existing team
@@ -99,7 +99,7 @@ class TestTeamIngestionService:
         )
 
         service = TeamIngestionService(client=mock_client)
-        result = service.ingest_teams("basketball", "nba")
+        result = service.ingest_teams("football", "nfl")
 
         assert result.created == 1  # BOS is new
         assert result.updated == 1  # ATL is updated
@@ -119,7 +119,7 @@ class TestTeamIngestionService:
         )
 
         service = TeamIngestionService(client=mock_client)
-        result = service.ingest_teams("basketball", "nba")
+        result = service.ingest_teams("football", "nfl")
 
         assert result.created == 0
         assert result.updated == 0
@@ -132,9 +132,9 @@ class TestScoreboardIngestionService:
     def test_ingest_scoreboard_success(self, mock_scoreboard_response):
         """Test successful scoreboard ingestion."""
         # Pre-create teams
-        sport = Sport.objects.create(slug="basketball", name="Basketball")
+        sport = Sport.objects.create(slug="football", name="Football")
         league = League.objects.create(
-            sport=sport, slug="nba", name="NBA", abbreviation="NBA"
+            sport=sport, slug="nfl", name="NFL", abbreviation="NFL"
         )
         Team.objects.create(
             league=league, espn_id="1", abbreviation="ATL", display_name="Atlanta Hawks"
@@ -151,7 +151,7 @@ class TestScoreboardIngestionService:
         )
 
         service = ScoreboardIngestionService(client=mock_client)
-        result = service.ingest_scoreboard("basketball", "nba", "20241215")
+        result = service.ingest_scoreboard("football", "nfl", "20241215")
 
         assert result.created == 1
         assert result.errors == 0
@@ -184,7 +184,7 @@ class TestScoreboardIngestionService:
         )
 
         service = ScoreboardIngestionService(client=mock_client)
-        result = service.ingest_scoreboard("basketball", "nba", "20241215")
+        result = service.ingest_scoreboard("football", "nfl", "20241215")
 
         assert result.created == 1
 
@@ -194,9 +194,9 @@ class TestScoreboardIngestionService:
     def test_ingest_scoreboard_updates_existing_event(self, mock_scoreboard_response):
         """Test scoreboard ingestion updates existing events."""
         # Create existing data
-        sport = Sport.objects.create(slug="basketball", name="Basketball")
+        sport = Sport.objects.create(slug="football", name="Football")
         league = League.objects.create(
-            sport=sport, slug="nba", name="NBA", abbreviation="NBA"
+            sport=sport, slug="nfl", name="NFL", abbreviation="NFL"
         )
         Team.objects.create(
             league=league, espn_id="1", abbreviation="ATL", display_name="Atlanta Hawks"
@@ -225,7 +225,7 @@ class TestScoreboardIngestionService:
         )
 
         service = ScoreboardIngestionService(client=mock_client)
-        result = service.ingest_scoreboard("basketball", "nba", "20241215")
+        result = service.ingest_scoreboard("football", "nfl", "20241215")
 
         assert result.created == 0
         assert result.updated == 1
@@ -245,7 +245,7 @@ class TestScoreboardIngestionService:
         )
 
         service = ScoreboardIngestionService(client=mock_client)
-        result = service.ingest_scoreboard("basketball", "nba", "20241215")
+        result = service.ingest_scoreboard("football", "nfl", "20241215")
 
         assert result.created == 0
         assert result.updated == 0

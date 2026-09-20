@@ -50,7 +50,7 @@ class TestTeamEndpoints:
         self, api_client: APIClient, team: Team, league: League
     ):
         """Test filtering teams by league."""
-        response = api_client.get("/api/v1/teams/", {"league": "nba"})
+        response = api_client.get("/api/v1/teams/", {"league": "nfl"})
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
@@ -62,7 +62,7 @@ class TestTeamEndpoints:
         self, api_client: APIClient, team: Team, sport: Sport
     ):
         """Test filtering teams by sport."""
-        response = api_client.get("/api/v1/teams/", {"sport": "basketball"})
+        response = api_client.get("/api/v1/teams/", {"sport": "football"})
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
@@ -89,7 +89,7 @@ class TestTeamEndpoints:
         assert data["espn_id"] == "1"
         assert data["abbreviation"] == "TST"
         assert data["display_name"] == "Test Team"
-        assert data["league"]["slug"] == "nba"
+        assert data["league"]["slug"] == "nfl"
         assert data["primary_logo"] == "https://example.com/logo.png"
 
     def test_get_team_by_espn_id(self, api_client: APIClient, team: Team):
@@ -144,7 +144,7 @@ class TestEventEndpoints:
         self, api_client: APIClient, event: Event, league: League
     ):
         """Test filtering events by league."""
-        response = api_client.get("/api/v1/events/", {"league": "nba"})
+        response = api_client.get("/api/v1/events/", {"league": "nfl"})
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
@@ -213,7 +213,7 @@ class TestEventEndpoints:
         assert data["espn_id"] == "401584666"
         assert data["name"] == "Test Team at Opponent Team"
         assert data["status"] == "final"
-        assert data["league"]["slug"] == "nba"
+        assert data["league"]["slug"] == "nfl"
         assert data["venue"]["name"] == "Test Arena"
         assert len(data["competitors"]) == 2
 
@@ -250,7 +250,7 @@ class TestIngestEndpoints:
 
             response = api_client.post(
                 "/api/v1/ingest/teams/",
-                {"sport": "basketball", "league": "nba"},
+                {"sport": "football", "league": "nfl"},
                 format="json",
             )
 
@@ -263,7 +263,7 @@ class TestIngestEndpoints:
         """Test teams ingestion with invalid data."""
         response = api_client.post(
             "/api/v1/ingest/teams/",
-            {"league": "nba"},  # Missing sport
+            {"league": "nfl"},  # Missing sport
             format="json",
         )
 
@@ -284,7 +284,7 @@ class TestIngestEndpoints:
 
             response = api_client.post(
                 "/api/v1/ingest/scoreboard/",
-                {"sport": "basketball", "league": "nba", "date": "20241215"},
+                {"sport": "football", "league": "nfl", "date": "20241215"},
                 format="json",
             )
 
@@ -296,7 +296,7 @@ class TestIngestEndpoints:
         """Test scoreboard ingestion with invalid date format."""
         response = api_client.post(
             "/api/v1/ingest/scoreboard/",
-            {"sport": "basketball", "league": "nba", "date": "2024-12-15"},
+            {"sport": "football", "league": "nfl", "date": "2024-12-15"},
             format="json",
         )
 
@@ -317,7 +317,7 @@ class TestIngestEndpoints:
 
             response = api_client.post(
                 "/api/v1/ingest/scoreboard/",
-                {"sport": "basketball", "league": "nba"},
+                {"sport": "football", "league": "nfl"},
                 format="json",
             )
 
@@ -374,17 +374,17 @@ class TestSportEndpoints:
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
         result = response.json()["results"][0]
-        assert result["slug"] == "basketball"
-        assert result["name"] == "Basketball"
+        assert result["slug"] == "football"
+        assert result["name"] == "Football"
 
     def test_get_sport_by_slug(self, api_client: APIClient, sport: Sport):
         """Test retrieving a sport by its slug."""
-        response = api_client.get("/api/v1/sports/basketball/")
+        response = api_client.get("/api/v1/sports/football/")
 
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
-        assert data["slug"] == "basketball"
-        assert data["name"] == "Basketball"
+        assert data["slug"] == "football"
+        assert data["name"] == "Football"
 
     def test_get_sport_not_found(self, api_client: APIClient):
         """Test retrieving a non-existent sport returns 404."""
@@ -411,15 +411,15 @@ class TestLeagueEndpoints:
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
         result = response.json()["results"][0]
-        assert result["slug"] == "nba"
-        assert result["abbreviation"] == "NBA"
-        assert result["sport"]["slug"] == "basketball"
+        assert result["slug"] == "nfl"
+        assert result["abbreviation"] == "NFL"
+        assert result["sport"]["slug"] == "football"
 
     def test_list_leagues_filter_by_sport(
         self, api_client: APIClient, league: League
     ):
         """Test filtering leagues by sport slug."""
-        response = api_client.get("/api/v1/leagues/", {"sport": "basketball"})
+        response = api_client.get("/api/v1/leagues/", {"sport": "football"})
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["count"] == 1
@@ -433,8 +433,8 @@ class TestLeagueEndpoints:
 
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
-        assert data["slug"] == "nba"
-        assert data["sport"]["slug"] == "basketball"
+        assert data["slug"] == "nfl"
+        assert data["sport"]["slug"] == "football"
 
     def test_get_league_not_found(self, api_client: APIClient):
         """Test retrieving a non-existent league returns 404."""

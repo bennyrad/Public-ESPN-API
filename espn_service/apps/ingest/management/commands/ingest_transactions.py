@@ -12,8 +12,8 @@ class Command(BaseCommand):
     help = "Ingest ESPN transaction records for one or all configured leagues."
 
     def add_arguments(self, parser: argparse.ArgumentParser) -> None:
-        parser.add_argument("--sport", type=str, help="Sport slug (e.g., basketball)")
-        parser.add_argument("--league", type=str, help="League slug (e.g., nba)")
+        parser.add_argument("--sport", type=str, help="Sport slug (e.g., football)")
+        parser.add_argument("--league", type=str, help="League slug (e.g., nfl)")
 
     def handle(self, *args, **options) -> None:  # noqa: ARG002
         sport = options.get("sport")

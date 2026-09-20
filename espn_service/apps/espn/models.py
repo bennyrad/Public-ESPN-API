@@ -14,7 +14,7 @@ class TimestampMixin(models.Model):
 
 
 class Sport(TimestampMixin):
-    """Sport entity (e.g., basketball, football)."""
+    """Sport entity (e.g., football)."""
 
     slug = models.CharField(max_length=50, unique=True, db_index=True)
     name = models.CharField(max_length=100)
@@ -27,7 +27,7 @@ class Sport(TimestampMixin):
 
 
 class League(TimestampMixin):
-    """League entity (e.g., NBA, NFL)."""
+    """League entity (e.g., NFL)."""
 
     sport = models.ForeignKey(
         Sport,

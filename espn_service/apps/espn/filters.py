@@ -12,12 +12,12 @@ class TeamFilter(django_filters.FilterSet):
     sport = django_filters.CharFilter(
         field_name="league__sport__slug",
         lookup_expr="iexact",
-        help_text="Filter by sport slug (e.g., 'basketball')",
+        help_text="Filter by sport slug (e.g., 'football')",
     )
     league = django_filters.CharFilter(
         field_name="league__slug",
         lookup_expr="iexact",
-        help_text="Filter by league slug (e.g., 'nba')",
+        help_text="Filter by league slug (e.g., 'nfl')",
     )
     is_active = django_filters.BooleanFilter(
         help_text="Filter by active status",
@@ -55,12 +55,12 @@ class EventFilter(django_filters.FilterSet):
     sport = django_filters.CharFilter(
         field_name="league__sport__slug",
         lookup_expr="iexact",
-        help_text="Filter by sport slug (e.g., 'basketball')",
+        help_text="Filter by sport slug (e.g., 'football')",
     )
     league = django_filters.CharFilter(
         field_name="league__slug",
         lookup_expr="iexact",
-        help_text="Filter by league slug (e.g., 'nba')",
+        help_text="Filter by league slug (e.g., 'nfl')",
     )
     date = django_filters.DateFilter(
         field_name="date",

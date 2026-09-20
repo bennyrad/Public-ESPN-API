@@ -33,8 +33,8 @@ help:
 	@echo "  beat        Start Celery beat scheduler"
 	@echo ""
 	@echo "Data:"
-	@echo "  ingest-teams   Ingest teams (SPORT=basketball LEAGUE=nba)"
-	@echo "  ingest-scores  Ingest scoreboard (SPORT=basketball LEAGUE=nba DATE=20241215)"
+	@echo "  ingest-teams   Ingest teams (SPORT=football LEAGUE=nfl)"
+	@echo "  ingest-scores  Ingest scoreboard (SPORT=football LEAGUE=nfl DATE=20241215)"
 
 # Installation
 install:
@@ -112,8 +112,8 @@ beat:
 	celery -A config beat -l INFO
 
 # Data Ingestion
-SPORT ?= basketball
-LEAGUE ?= nba
+SPORT ?= football
+LEAGUE ?= nfl
 DATE ?= $(shell date +%Y%m%d)
 
 ingest-teams:

@@ -4,72 +4,9 @@ from django.core.management.base import BaseCommand, CommandError
 
 from apps.ingest.services import TeamIngestionService
 
-# All major leagues across all 17 sports
+# NFL-only scope for this project
 ALL_LEAGUES = [
-    # Football
     ("football", "nfl"),
-    ("football", "college-football"),
-    ("football", "cfl"),
-    ("football", "ufl"),
-    ("football", "xfl"),
-    # Basketball
-    ("basketball", "nba"),
-    ("basketball", "wnba"),
-    ("basketball", "mens-college-basketball"),
-    ("basketball", "womens-college-basketball"),
-    ("basketball", "nba-development"),
-    ("basketball", "nbl"),
-    # Baseball
-    ("baseball", "mlb"),
-    ("baseball", "college-baseball"),
-    # Hockey
-    ("hockey", "nhl"),
-    ("hockey", "mens-college-hockey"),
-    ("hockey", "womens-college-hockey"),
-    # Soccer — top leagues + major competitions
-    ("soccer", "eng.1"),
-    ("soccer", "usa.1"),
-    ("soccer", "esp.1"),
-    ("soccer", "ger.1"),
-    ("soccer", "ita.1"),
-    ("soccer", "fra.1"),
-    ("soccer", "mex.1"),
-    ("soccer", "uefa.champions"),
-    ("soccer", "uefa.europa"),
-    ("soccer", "usa.nwsl"),
-    ("soccer", "eng.2"),
-    # MMA
-    ("mma", "ufc"),
-    ("mma", "bellator"),
-    # Golf
-    ("golf", "pga"),
-    ("golf", "lpga"),
-    ("golf", "liv"),
-    ("golf", "eur"),
-    # Tennis
-    ("tennis", "atp"),
-    ("tennis", "wta"),
-    # Racing
-    ("racing", "f1"),
-    ("racing", "irl"),
-    ("racing", "nascar-premier"),
-    ("racing", "nascar-secondary"),
-    ("racing", "nascar-truck"),
-    # Rugby Union (numeric IDs)
-    ("rugby", "164205"),   # Rugby World Cup
-    ("rugby", "180659"),   # Six Nations
-    ("rugby", "267979"),   # Gallagher Premiership
-    ("rugby", "242041"),   # Super Rugby Pacific
-    ("rugby", "289262"),   # Major League Rugby
-    # Rugby League
-    ("rugby-league", "3"),
-    # Lacrosse
-    ("lacrosse", "pll"),
-    ("lacrosse", "nll"),
-    ("lacrosse", "mens-college-lacrosse"),
-    ("lacrosse", "womens-college-lacrosse"),
-    # Australian Football
-    ("australian-football", "afl"),
 ]
 
 
@@ -77,7 +14,7 @@ class Command(BaseCommand):
     """Django management command to ingest teams for all supported leagues."""
 
     help = (
-        "Ingest team data from ESPN for all configured leagues. "
+        "Ingest team data from ESPN for configured leagues. "
         "Use --sport to filter by sport or --dry-run to preview without ingesting."
     )
 
@@ -86,7 +23,7 @@ class Command(BaseCommand):
             "--sport",
             type=str,
             default=None,
-            help="Optional: filter to a single sport slug (e.g., basketball)",
+            help="Optional: filter to a single sport slug (e.g., football)",
         )
         parser.add_argument(
             "--dry-run",

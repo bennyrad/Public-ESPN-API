@@ -188,36 +188,35 @@ CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
 CELERY_BEAT_SCHEDULE = {
-    # Scoreboards — high-frequency during seasons
-    "refresh-nba-scoreboard-hourly": {
-        "task": "apps.ingest.tasks.refresh_scoreboard_task",
-        "schedule": 3600.0,  # Every hour
-        "args": ("basketball", "nba"),
-    },
+    # Scoreboards — high-frequency during NFL season
     "refresh-nfl-scoreboard-hourly": {
         "task": "apps.ingest.tasks.refresh_scoreboard_task",
         "schedule": 3600.0,  # Every hour
         "args": ("football", "nfl"),
     },
-    # Teams — refreshed weekly (rosters/logos change infrequently)
-    "refresh-teams-weekly": {
-        "task": "apps.ingest.tasks.refresh_all_teams_task",
+    # Teams — refreshed weekly
+    "refresh-nfl-teams-weekly": {
+        "task": "apps.ingest.tasks.refresh_teams_task",
         "schedule": 86400.0 * 7,  # Weekly
+        "args": ("football", "nfl"),
     },
-    # News — ingested every 30 minutes across all leagues
-    "refresh-all-news-30min": {
-        "task": "apps.ingest.tasks.refresh_all_news_task",
+    # News — ingested every 30 minutes
+    "refresh-nfl-news-30min": {
+        "task": "apps.ingest.tasks.refresh_news_task",
         "schedule": 1800.0,  # Every 30 minutes
+        "args": ("football", "nfl"),
     },
     # Injuries — refreshed every 4 hours (snapshot replacement)
-    "refresh-all-injuries-4h": {
-        "task": "apps.ingest.tasks.refresh_all_injuries_task",
+    "refresh-nfl-injuries-4h": {
+        "task": "apps.ingest.tasks.refresh_injuries_task",
         "schedule": 14400.0,  # Every 4 hours
+        "args": ("football", "nfl"),
     },
     # Transactions — refreshed every 6 hours
-    "refresh-all-transactions-6h": {
-        "task": "apps.ingest.tasks.refresh_all_transactions_task",
+    "refresh-nfl-transactions-6h": {
+        "task": "apps.ingest.tasks.refresh_transactions_task",
         "schedule": 21600.0,  # Every 6 hours
+        "args": ("football", "nfl"),
     },
 }
 
